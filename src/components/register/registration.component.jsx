@@ -7,6 +7,9 @@ export const Registration = () => {
   const [email, setEmail] = useState('');
 
   /* Insert code here for handling signup once api is ready */
+  /*
+  Styling and make sure that we submit to the api when we submit the form
+  */
 
   return (
     <Container>

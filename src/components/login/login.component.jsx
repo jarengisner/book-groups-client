@@ -1,16 +1,21 @@
 import { useState } from 'react';
 import { Card, Col, Container, Form, Row, Button } from 'react-bootstrap';
+import '../../index.css';
 
 export const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   /* Insert code here for handling login once api is ready */
+  /*
+  Need to just style this correctly so it looks good, and also then make sure that we actually submit our login request when we log into the application
+  */
 
   return (
     <Container>
-      <Row>
-        <Col>
+      <Row className='justify-content-center'>
+        <h1>BookWorm</h1>
+        <Col md={3}>
           <Card>
             <h1>Log In</h1>
             <Form>
