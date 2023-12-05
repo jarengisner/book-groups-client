@@ -6,13 +6,14 @@ import { Profile } from '../profile-component/profile.component';
 import { Explore } from '../explore-component/explore.component';
 import { Login } from '../login/login.component';
 import { Registration } from '../register/registration.component';
+import Col from 'react-bootstrap';
 
 export const MainView = () => {
-  const [user, setUser] = useState(null);
+  const storedUser = JSON.parse(localStorage.getItem('user'));
+  const storedToken = localStorage.getItem('token');
+  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
 
-  /*
-  Resume by checking and making sure that the routes are correct and that we have all the routes we need
-  */
   return (
     <BrowserRouter>
       <Row className='justify-content-md-center'>
@@ -29,7 +30,10 @@ export const MainView = () => {
               <>{user ? <Profile user={user} /> : <Navigate to='/login' />}</>
             }
           />
-          <Route path='/login' element={<Login />} />
+          <Route
+            path='/login'
+            element={<Login onLogin={(user) => setUser(user)} />}
+          />
           <Route path='/register' element={<Registration />} />
         </Routes>
       </Row>
