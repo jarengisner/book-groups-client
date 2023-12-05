@@ -17,7 +17,7 @@ export const Navigation = () => {
               Home
             </Nav.Link>
             {/* navigates to home or / */}
-            <Nav.Link as={Link} to='/groups'>
+            <Nav.Link as={Link} to='/mygroups'>
               My Groups
             </Nav.Link>
             <Nav.Link as={Link} to='/profile'>

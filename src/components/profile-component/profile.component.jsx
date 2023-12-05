@@ -2,6 +2,7 @@ import { Card, Col, Container, Row } from 'react-bootstrap';
 import '../profile-component/profile.styles.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { Navigation } from '../navigation/navigation.component';
 
 export const Profile = () => {
   const fakeData = [
@@ -23,6 +24,9 @@ export const Profile = () => {
 
   return (
     <Container fluid>
+      <Row>
+        <Navigation />
+      </Row>
       <Row>
         {/* Left Content */}
         <Col md={8}>

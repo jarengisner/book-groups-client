@@ -6,6 +6,7 @@ import { Profile } from '../profile-component/profile.component';
 import { Explore } from '../explore-component/explore.component';
 import { Login } from '../login/login.component';
 import { Registration } from '../register/registration.component';
+import { GroupList } from '../group-list-component/group-list.component';
 import Col from 'react-bootstrap';
 
 export const MainView = () => {
@@ -21,13 +22,25 @@ export const MainView = () => {
           <Route
             path='/'
             element={
-              <>{user ? <Explore user={user} /> : <Navigate to='/login' />}</>
+              <>
+                {user && token ? (
+                  <Explore user={user} />
+                ) : (
+                  <Navigate to='/login' />
+                )}
+              </>
             }
           />
           <Route
             path='/profile'
             element={
-              <>{user ? <Profile user={user} /> : <Navigate to='/login' />}</>
+              <>
+                {user && token ? (
+                  <Profile user={user} />
+                ) : (
+                  <Navigate to='/login' />
+                )}
+              </>
             }
           />
           <Route
@@ -35,6 +48,18 @@ export const MainView = () => {
             element={<Login onLogin={(user) => setUser(user)} />}
           />
           <Route path='/register' element={<Registration />} />
+          <Route
+            path='/mygroups'
+            element={
+              <>
+                {user && token ? (
+                  <GroupList user={user} />
+                ) : (
+                  <Navigate to='/login' />
+                )}
+              </>
+            }
+          />
         </Routes>
       </Row>
     </BrowserRouter>
