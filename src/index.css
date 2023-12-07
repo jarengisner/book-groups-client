@@ -14,7 +14,7 @@ code {
 
 .groupSuggestionRow {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   align-items: center;
   justify-content: center;
 }
@@ -22,4 +22,31 @@ code {
 .groupSuggestionCard {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.suggestionsWithImg {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.infoDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .profilePic {
+  height: 100px;
+  width: 100px;
+} */
+
+.profilePic {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 20px;
 }

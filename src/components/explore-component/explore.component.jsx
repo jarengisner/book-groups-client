@@ -20,6 +20,7 @@ export const Explore = () => {
             id: club._id,
             name: club.name,
             description: club.description,
+            groupImg: club.groupImg,
           };
         });
 
@@ -33,7 +34,7 @@ export const Explore = () => {
       <Row>
         <Navigation />
       </Row>
-      <Row>
+      <Row style={{ border: '1px solid grey' }}>
         <>
           {suggestions.length > 0 ? (
             suggestions.map((item) => (
@@ -50,14 +51,23 @@ export const Explore = () => {
           )}
         </>
       </Row>
-      <Row className='groupSuggestionRow'>
+      <Row className='groupSuggestionRow' style={{ marginTop: 20 }}>
         <>
           {groupSuggestions.length > 0 ? (
             groupSuggestions.map((item) => (
-              <Col md={8}>
-                <Card className='groupSuggestionCard'>
-                  <h1>{item.name}</h1>
-                  <h2>{item.description}</h2>
+              <Col md={5} sm={8} lg={5}>
+                <Card style={{ margin: 7 }}>
+                  <div className='suggestionsWithImg'>
+                    <img
+                      src={item.groupImg}
+                      alt='group logo'
+                      className='profilePic'
+                    ></img>
+                    <div style={{ width: '60%' }}>
+                      <Card.Title>{item.name}</Card.Title>
+                      <Card.Subtitle>{item.description}</Card.Subtitle>
+                    </div>
+                  </div>
                 </Card>
               </Col>
             ))
