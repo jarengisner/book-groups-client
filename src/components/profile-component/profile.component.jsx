@@ -4,7 +4,8 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { Navigation } from '../navigation/navigation.component';
 
-export const Profile = () => {
+export const Profile = ({ user }) => {
+  //make algorithm to sort out groups that the user is involved in
   const fakeData = [
     {
       name: 'Horror Book Lovers',
@@ -32,8 +33,8 @@ export const Profile = () => {
         <Col md={8}>
           {/* First Component */}
           <div className='content-box'>
-            <h2>Profile Name</h2>
-            <p>This is the first component.</p>
+            <h2>{user.username}</h2>
+            <p>{user.bio}</p>
             <div className='profile-badge-container'>
               <p>emblem</p>
               <p>emblem</p>
@@ -44,7 +45,7 @@ export const Profile = () => {
           {/* Second Component */}
           <div className='content-box'>
             <h2>Component 2</h2>
-            <p>This is the second component.</p>
+            <p>My Books</p>
           </div>
         </Col>
 
@@ -52,7 +53,6 @@ export const Profile = () => {
         <Col md={4} className='side-panel'>
           <div className='content-box'>
             <h2>My groups</h2>
-            <p>This is the side panel content.</p>
           </div>
           <div className='my-group-profile-container'>
             {groups.map((group) => {

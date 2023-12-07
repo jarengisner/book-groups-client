@@ -36,7 +36,7 @@ export const Login = ({ onLogin }) => {
           localStorage.setItem('user', JSON.stringify(info.user));
           localStorage.setItem('token', info.token);
           console.log('successful login');
-          onLogin(info.user);
+          onLogin(info.user, info.token);
           navigate('/');
         } else {
           console.log('username or password is incorrect');
@@ -55,7 +55,7 @@ export const Login = ({ onLogin }) => {
           <Card>
             <h1>Log In</h1>
             <Form>
-              <Form.Group controlId='forUsername' onSubmit={handleSubmit}>
+              <Form.Group controlId='forUsername'>
                 <Form.Label>Username:</Form.Label>
                 <Form.Control
                   type='text'

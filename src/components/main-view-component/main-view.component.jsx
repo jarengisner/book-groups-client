@@ -15,6 +15,11 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
 
+  const onLogin = (user, token) => {
+    setUser(user);
+    setToken(token);
+  };
+
   return (
     <BrowserRouter>
       <Row className='justify-content-md-center'>
@@ -43,10 +48,7 @@ export const MainView = () => {
               </>
             }
           />
-          <Route
-            path='/login'
-            element={<Login onLogin={(user) => setUser(user)} />}
-          />
+          <Route path='/login' element={<Login onLogin={onLogin} />} />
           <Route path='/register' element={<Registration />} />
           <Route
             path='/mygroups'
