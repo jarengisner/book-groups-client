@@ -8,17 +8,41 @@ import { Login } from '../login/login.component';
 import { Registration } from '../register/registration.component';
 import { GroupList } from '../group-list-component/group-list.component';
 import Col from 'react-bootstrap';
+import { ClubPreview } from '../club-preview-component/club-preview.component';
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
   const storedToken = localStorage.getItem('token');
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
+  //groups and books to be passed to the explore component
+  const [groupSuggestions, setGroupSuggestions] = useState([]);
+  //books
+  /* const [suggestions, setSuggested] = useState([]); */
 
   const onLogin = (user, token) => {
     setUser(user);
     setToken(token);
   };
+
+  useEffect(() => {
+    fetch('http://localhost:8080/clubs')
+      .then((res) => res.json())
+      .then((data) => {
+        const clubData = data.map((club) => {
+          return {
+            id: club._id,
+            name: club.name,
+            description: club.description,
+            groupImg: club.groupImg,
+            members: club.members,
+          };
+        });
+
+        console.log(clubData);
+        setGroupSuggestions(clubData);
+      });
+  }, []);
 
   return (
     <BrowserRouter>
@@ -29,7 +53,7 @@ export const MainView = () => {
             element={
               <>
                 {user && token ? (
-                  <Explore user={user} />
+                  <Explore user={user} groupSuggestions={groupSuggestions} />
                 ) : (
                   <Navigate to='/login' />
                 )}
@@ -56,6 +80,18 @@ export const MainView = () => {
               <>
                 {user && token ? (
                   <GroupList user={user} />
+                ) : (
+                  <Navigate to='/login' />
+                )}
+              </>
+            }
+          />
+          <Route
+            path='/groups/:groupname'
+            element={
+              <>
+                {user && token ? (
+                  <ClubPreview clubs={groupSuggestions} />
                 ) : (
                   <Navigate to='/login' />
                 )}

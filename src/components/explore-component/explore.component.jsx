@@ -2,14 +2,11 @@ import { useEffect, useState } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Navigation } from '../navigation/navigation.component';
 import '../../index.css';
+import { Link } from 'react-router-dom';
 
-export const Explore = () => {
-  const [suggestions, setSuggested] = useState([]);
+export const Explore = ({ groupSuggestions }) => {
+  /* const [suggestions, setSuggested] = useState([]);
   const [groupSuggestions, setGroupSuggestions] = useState([]);
-
-  /*
-  Need to complete this page with styling and make sure that proper connections are made when clicking on each individual club
-  */
 
   useEffect(() => {
     fetch('http://localhost:8080/clubs')
@@ -27,7 +24,8 @@ export const Explore = () => {
         console.log(clubData);
         setGroupSuggestions(clubData);
       });
-  }, []);
+  }, []); */
+  const suggestions = [];
 
   return (
     <Container>
@@ -56,23 +54,25 @@ export const Explore = () => {
           {groupSuggestions.length > 0 ? (
             groupSuggestions.map((item) => (
               <Col md={5} sm={8} lg={5}>
-                <Card style={{ margin: 7 }}>
-                  <div className='suggestionsWithImg'>
-                    <img
-                      src={item.groupImg}
-                      alt='group logo'
-                      className='profilePic'
-                    ></img>
-                    <div style={{ width: '60%' }}>
-                      <Card.Title>{item.name}</Card.Title>
-                      <Card.Subtitle>{item.description}</Card.Subtitle>
+                <Link to={`/groups/${item.name}`} className='removeDecoration'>
+                  <Card style={{ margin: 7 }}>
+                    <div className='suggestionsWithImg'>
+                      <img
+                        src={item.groupImg}
+                        alt='group logo'
+                        className='profilePic'
+                      ></img>
+                      <div style={{ width: '60%' }}>
+                        <Card.Title>{item.name}</Card.Title>
+                        <Card.Subtitle>{item.description}</Card.Subtitle>
+                      </div>
                     </div>
-                  </div>
-                </Card>
+                  </Card>
+                </Link>
               </Col>
             ))
           ) : (
-            <Col>Group suggestions currently empty</Col>
+            <Col>Loading...</Col>
           )}
         </>
       </Row>

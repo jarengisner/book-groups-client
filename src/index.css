@@ -50,3 +50,12 @@ code {
   border-radius: 50%;
   margin-right: 20px;
 }
+
+.removeDecoration {
+  text-decoration: none;
+  color: inherit;
+}
+
+.removeDecoration:hover {
+  text-decoration: none;
+}
