@@ -91,7 +91,7 @@ export const MainView = () => {
             element={
               <>
                 {user && token ? (
-                  <ClubPreview clubs={groupSuggestions} />
+                  <ClubPreview clubs={groupSuggestions} user={user} />
                 ) : (
                   <Navigate to='/login' />
                 )}
