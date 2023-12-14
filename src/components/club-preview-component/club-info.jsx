@@ -6,10 +6,11 @@ export const ClubPreviewInfo = ({ club, user }) => {
   //may be used to display an error or success message for the users
   const message = useState('');
   const name = club.name;
+  console.log(name);
   const userId = user.username;
 
   const joinHandle = () => {
-    fetch(`http://localhost:3000/clubs/${name}/join`, {
+    fetch(`http://localhost:8080/clubs/join/${name}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: {
@@ -27,7 +28,7 @@ export const ClubPreviewInfo = ({ club, user }) => {
   };
 
   const leaveHandle = () => {
-    fetch(`http://localhost:3000/clubs/${name}/${userId}/leave`, {
+    fetch(`http://localhost:8080/clubs/${name}/${userId}/leave`, {
       method: 'PUT',
     })
       .then((res) => res.json())

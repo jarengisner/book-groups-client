@@ -40,7 +40,7 @@ export const MemberList = ({ club }) => {
             <Card>
               <img src={person.profilePic} alt='profile'></img>
               <div>
-                <Card.Title>{person.name}</Card.Title>
+                <Card.Title>{person.username}</Card.Title>
               </div>
             </Card>
           ))}
