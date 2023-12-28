@@ -8,6 +8,7 @@ export const ClubPreviewInfo = ({ club, user }) => {
   const name = club.name;
   console.log(name);
   const userId = user.username;
+  const members = club.members;
 
   const joinHandle = () => {
     fetch(`http://localhost:8080/clubs/join/${name}`, {
@@ -41,6 +42,16 @@ export const ClubPreviewInfo = ({ club, user }) => {
       });
   };
 
+  const memCheck = (members, userId) => {
+    let filter = members.filter((item) => item.username === userId);
+
+    if (filter.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
     <div>
       <Card>
@@ -50,7 +61,7 @@ export const ClubPreviewInfo = ({ club, user }) => {
         <div>
           <p>This will contain a carousel of the books from the club</p>
           <>
-            {!club.members.includes(userId) ? (
+            {!club.members.some((member) => member.username === userId) ? (
               <Button
                 style={{ width: '33%' }}
                 variant='outline-dark'
