@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 
 export const MemberList = ({ club }) => {
-  const [members, setMembers] = useState([]);
+  const [members, setMembers] = useState(club.members);
 
   /* useEffect(() => {
     let membersToPush = [];
@@ -27,6 +27,8 @@ export const MemberList = ({ club }) => {
 
   useEffect(() => {
     setMembers(club.members);
+    console.log('This is the members');
+    console.log(club.members);
     console.log(members);
   }, []);
 
