@@ -8,7 +8,6 @@ export const ClubPreviewInfo = ({ club, user }) => {
   const name = club.name;
   console.log(name);
   const userId = user.username;
-  const members = club.members;
 
   const joinHandle = () => {
     fetch(`http://localhost:8080/clubs/join/${name}`, {
@@ -40,16 +39,6 @@ export const ClubPreviewInfo = ({ club, user }) => {
         console.log(err);
         console.log('There was an error leaving the group');
       });
-  };
-
-  const memCheck = (members, userId) => {
-    let filter = members.filter((item) => item.username === userId);
-
-    if (filter.length > 0) {
-      return true;
-    } else {
-      return false;
-    }
   };
 
   return (
