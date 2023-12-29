@@ -71,8 +71,8 @@ export const MainView = () => {
                       setUser(null);
                       setToken(null);
                       localStorage.clear();
-                      /* may have to navigate here */
                     }}
+                    groupSuggestions={groupSuggestions}
                   />
                 ) : (
                   <Navigate to='/login' />

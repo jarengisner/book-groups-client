@@ -4,24 +4,21 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { Navigation } from '../navigation/navigation.component';
 
-export const Profile = ({ user, onLogout }) => {
+export const Profile = ({ user, onLogout, groupSuggestions }) => {
   //make algorithm to sort out groups that the user is involved in
-  const fakeData = [
-    {
-      name: 'Horror Book Lovers',
-      desc: 'A collection of people who love horror books',
-    },
-    {
-      name: 'Thursday Reading Club',
-      desc: 'Every thursday meeting about a book',
-    },
-    {
-      name: 'Alien Lore Club',
-      desc: 'Discovering the truth',
-    },
-  ];
 
-  const [groups, setGroups] = useState(fakeData);
+  const [groups, setGroups] = useState([]);
+
+  //useEffect is good, but it will filter for groups that you are a member of, make sure that it will provide all the details, etc.
+  useEffect(() => {
+    const groups = groupSuggestions;
+    console.log(groups);
+    const filteredGroups = groups.filter((group) => {
+      return group.members.some((member) => member.username === user.username);
+    });
+
+    setGroups(filteredGroups);
+  }, [groupSuggestions, user.username]);
 
   return (
     <Container fluid>
