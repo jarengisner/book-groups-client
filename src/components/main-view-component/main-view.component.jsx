@@ -65,7 +65,15 @@ export const MainView = () => {
             element={
               <>
                 {user && token ? (
-                  <Profile user={user} />
+                  <Profile
+                    user={user}
+                    onLogout={() => {
+                      setUser(null);
+                      setToken(null);
+                      localStorage.clear();
+                      /* may have to navigate here */
+                    }}
+                  />
                 ) : (
                   <Navigate to='/login' />
                 )}

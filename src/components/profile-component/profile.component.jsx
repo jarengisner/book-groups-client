@@ -1,10 +1,10 @@
-import { Card, Col, Container, Row } from 'react-bootstrap';
+import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import '../profile-component/profile.styles.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { Navigation } from '../navigation/navigation.component';
 
-export const Profile = ({ user }) => {
+export const Profile = ({ user, onLogout }) => {
   //make algorithm to sort out groups that the user is involved in
   const fakeData = [
     {
@@ -40,6 +40,9 @@ export const Profile = ({ user }) => {
               <p>emblem</p>
               <p>emblem</p>
             </div>
+            <Button variant='outline-danger' onClick={onLogout}>
+              Logout
+            </Button>
           </div>
 
           {/* Second Component */}
