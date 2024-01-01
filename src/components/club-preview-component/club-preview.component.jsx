@@ -6,14 +6,38 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import '../../index.css';
 
-export const ClubPreview = ({ clubs, user }) => {
-  const { groupname } = useParams();
-  const club = clubs.find((c) => c.name === groupname);
+export const ClubPreview = ({ user }) => {
+  /* const club = clubs.find((c) => c.name === groupname);
 
   console.log(clubs);
   console.log(groupname);
   console.log(club);
-  console.log(user);
+  console.log(user); */
+
+  const [club, setClub] = useState(null);
+
+  const { groupname } = useParams();
+
+  console.log(groupname);
+
+  useEffect(() => {
+    fetch(`http://localhost:8080/clubs/${groupname}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setClub(data);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log(
+          'There was an error when loading a specific club to the preview page'
+        );
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log(club);
+  }, [club]);
 
   return (
     <Container>
@@ -22,13 +46,19 @@ export const ClubPreview = ({ clubs, user }) => {
       </Row>
       <Row>
         <Col>
-          <ClubPreviewInfo club={club} user={user} />
+          <>
+            {club ? (
+              <ClubPreviewInfo club={club} user={user} />
+            ) : (
+              <p>Loading....</p>
+            )}
+          </>
           <div>
             <h1>Join Club to gain access to clubs posts</h1>
           </div>
         </Col>
         <Col>
-          <MemberList club={club} />
+          <>{club ? <MemberList club={club} /> : <p>Loading...</p>}</>
         </Col>
       </Row>
     </Container>
