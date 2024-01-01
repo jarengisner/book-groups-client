@@ -1,6 +1,7 @@
 import { Button, Card } from 'react-bootstrap';
 import '../../index.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const ClubPreviewInfo = ({ club, user }) => {
   //may be used to display an error or success message for the users
@@ -9,17 +10,16 @@ export const ClubPreviewInfo = ({ club, user }) => {
   console.log(name);
   const userId = user.username;
 
+  const navigate = useNavigate();
+
   const joinHandle = () => {
-    fetch(`http://localhost:8080/clubs/join/${name}`, {
+    fetch(`http://localhost:8080/clubs/join/${name}/${userId}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: {
-        username: JSON.stringify(userId),
-      },
     })
-      .then((res) => res.json)
+      .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        navigate(`/groups/${name}`);
       })
       .catch((err) => {
         console.log(err);
