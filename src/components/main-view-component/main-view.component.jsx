@@ -9,6 +9,7 @@ import { Registration } from '../register/registration.component';
 import { GroupList } from '../group-list-component/group-list.component';
 import Col from 'react-bootstrap';
 import { ClubPreview } from '../club-preview-component/club-preview.component';
+import { MemberView } from '../club-member-view/club-member-view.component';
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -100,6 +101,18 @@ export const MainView = () => {
               <>
                 {user && token ? (
                   <ClubPreview user={user} />
+                ) : (
+                  <Navigate to='/login' />
+                )}
+              </>
+            }
+          />
+          <Route
+            path='/groups/:groupname/member'
+            element={
+              <>
+                {user && token ? (
+                  <MemberView user={user} />
                 ) : (
                   <Navigate to='/login' />
                 )}
