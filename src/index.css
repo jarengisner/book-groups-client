@@ -59,3 +59,9 @@ code {
 .removeDecoration:hover {
   text-decoration: none;
 }
+
+.postDiv {
+  border: 1px solid lightgrey;
+  border-radius: 8px;
+  margin-top: 10px;
+}

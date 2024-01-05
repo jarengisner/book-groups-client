@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 
 export const ClubPreviewInfo = ({ club, user }) => {
   const name = club.name;
-  console.log(name);
   const userId = user.username;
 
   const navigate = useNavigate();

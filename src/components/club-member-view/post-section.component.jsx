@@ -4,7 +4,10 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { CreatePost } from './create-post-modal.component';
 
-export const Posts = ({ user, posts }) => {
+//style
+import '../../index.css';
+
+export const Posts = ({ user, posts, groupname }) => {
   const [currentPosts, setCurrentPosts] = useState([]);
   const [show, setShow] = useState(false);
 
@@ -21,7 +24,7 @@ export const Posts = ({ user, posts }) => {
   }, [posts]);
 
   return (
-    <Container>
+    <Container className='postDiv'>
       <Row>
         <Button onClick={openModal}>create post</Button>
       </Row>
@@ -40,7 +43,12 @@ export const Posts = ({ user, posts }) => {
         )}
       </>
 
-      <CreatePost show={show} closeHandle={handleModalClose} user={user} />
+      <CreatePost
+        show={show}
+        closeHandle={handleModalClose}
+        user={user}
+        groupname={groupname}
+      />
     </Container>
   );
 };

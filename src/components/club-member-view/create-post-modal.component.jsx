@@ -1,13 +1,38 @@
 import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-export const CreatePost = ({ show, closeHandle, user }) => {
+export const CreatePost = ({ show, closeHandle, user, groupname }) => {
   const [postBody, setPostBody] = useState('');
   const [postImgUrl, setPostImgUrl] = useState('');
   const [currentUser, setUser] = useState(user);
 
+  const userId = user.username;
+
   const handlePostSubmit = () => {
-    //plaehold
+    const date = new Date();
+
+    const postData = {
+      post: {
+        postUser: userId,
+        imgUrl: postImgUrl,
+        postBody: postBody,
+        date: JSON.stringify(date),
+      },
+    };
+
+    fetch(`http://localhost:8080/clubs/${groupname}/posts`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(postData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+
+    closeHandle();
   };
 
   return (

@@ -25,8 +25,8 @@ export const MemberView = ({ user }) => {
       .then((data) => {
         setClub(data);
         setPosts(data.posts);
-        console.log(data);
-        console.log(data.posts);
+        /* console.log(data);
+        console.log(data.posts); */
       })
       .catch((err) => {
         console.log(err);
@@ -51,7 +51,7 @@ export const MemberView = ({ user }) => {
           </>
           <div>
             {/* the actual posts section will be here, this will be a very in depth area */}
-            <Posts user={user} posts={posts} />
+            <Posts user={user} posts={posts} groupname={groupname} />
           </div>
         </Col>
         <Col>
