@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
+import moment from 'moment';
 
 export const CreatePost = ({ show, closeHandle, user, groupname }) => {
   const [postBody, setPostBody] = useState('');
@@ -10,6 +11,8 @@ export const CreatePost = ({ show, closeHandle, user, groupname }) => {
 
   const handlePostSubmit = () => {
     const date = new Date();
+
+    date = moment(date).format('MM/DD/YYYY');
 
     const postData = {
       post: {

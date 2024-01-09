@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Container, Button, Row, Col } from 'react-bootstrap';
+import { Container, Button, Row, Col, Card } from 'react-bootstrap';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { CreatePost } from './create-post-modal.component';
+import moment from 'moment';
 
 //style
 import '../../index.css';
@@ -28,21 +29,24 @@ export const Posts = ({ user, posts, groupname }) => {
       <Row>
         <Button onClick={openModal}>create post</Button>
       </Row>
-      <>
+      <div>
         {currentPosts.length > 0 ? (
-          //Not sure if this is gonna work quite right
-          <>
-            {currentPosts.map((post) => (
-              <h1>This is an example post</h1>
-            ))}
-          </>
+          posts.map((post) => (
+            <Row>
+              <Card>
+                {post.postImg ? <img src={post.postImg} alt='Po' /> : null}
+                <div className='post-content'>
+                  <p>{post.postUser}</p>
+                  <p>{post.postBody}</p>
+                  <p>{moment(post.date).format('MM/DD/YYYY')}</p>
+                </div>
+              </Card>
+            </Row>
+          ))
         ) : (
-          <Row>
-            <h1>Posts are currently empty</h1>
-          </Row>
+          <p>No posts available</p>
         )}
-      </>
-
+      </div>
       <CreatePost
         show={show}
         closeHandle={handleModalClose}
