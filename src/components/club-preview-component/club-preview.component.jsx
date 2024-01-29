@@ -44,10 +44,10 @@ export const ClubPreview = ({ user }) => {
               <Navigation />
             </Row>
             <Row>
-              <Col>
+              <Col sm={12} md={9}>
                 <ClubPreviewInfo club={club} user={user} />
               </Col>
-              <Col>
+              <Col sm={12} md={3}>
                 <MemberList club={club} />
               </Col>
             </Row>

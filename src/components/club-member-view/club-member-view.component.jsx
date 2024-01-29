@@ -40,7 +40,7 @@ export const MemberView = ({ user }) => {
         <Navigation />
       </Row>
       <Row>
-        <Col>
+        <Col sm={12} md={9}>
           {/* This is gonna be the club preview, nothing else needs to be added here */}
           <>
             {club ? (
@@ -54,7 +54,7 @@ export const MemberView = ({ user }) => {
             <Posts user={user} posts={posts} groupname={groupname} />
           </div>
         </Col>
-        <Col>
+        <Col sm={12} md={3}>
           {/* member list here just like in the preview */}
           <>{club ? <MemberList club={club} /> : <p>Loading...</p>}</>
         </Col>

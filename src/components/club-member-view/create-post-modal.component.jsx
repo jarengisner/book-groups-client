@@ -39,7 +39,7 @@ export const CreatePost = ({ show, closeHandle, user, groupname }) => {
   };
 
   return (
-    <Modal show={show} onHide={closeHandle}>
+    <Modal show={show} onHide={closeHandle} centered>
       <Modal.Header closeButton>
         <Modal.Title>New Post</Modal.Title>
       </Modal.Header>
