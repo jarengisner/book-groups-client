@@ -6,6 +6,8 @@ import { CreatePost } from './create-post-modal.component';
 import moment from 'moment';
 import { ClipLoader } from 'react-spinners';
 
+import { UserVisit } from './user-profile-visitor.component';
+
 //style
 import '../../index.css';
 
@@ -15,12 +17,31 @@ export const Posts = ({ user, posts, groupname }) => {
   const [key, setKey] = useState('All');
   const [empty, setEmpty] = useState(false);
 
+  //States used for user profile visit modal
+  const [visitTarget, setVisitTarget] = useState(null);
+  const [userShow, setUserShow] = useState(false);
+
   const openModal = () => {
     setShow(true);
   };
 
   const handleModalClose = () => {
     setShow(false);
+  };
+
+  //User preview modal below
+
+  const openUserModal = (event) => {
+    const visitTarget = event.target.textContent;
+    fetch(`http://localhost:8080/users/${visitTarget}`)
+      .then((res) => res.json())
+      .then((data) => setVisitTarget(data));
+
+    setUserShow(true);
+  };
+
+  const userCloseHandle = () => {
+    setUserShow(false);
   };
 
   useEffect(() => {
@@ -98,6 +119,12 @@ export const Posts = ({ user, posts, groupname }) => {
         closeHandle={handleModalClose}
         user={user}
         groupname={groupname}
+      />
+
+      <UserVisit
+        userCloseHandle={userCloseHandle}
+        userShow={userShow}
+        user={visitTarget}
       />
     </Container>
   );
