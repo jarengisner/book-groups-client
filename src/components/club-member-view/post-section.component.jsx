@@ -77,7 +77,12 @@ export const Posts = ({ user, posts, groupname }) => {
                   <Card>
                     {post.postImg ? <img src={post.postImg} alt='Po' /> : null}
                     <div className='post-content'>
-                      <p className='post-user-text'>{post.postUser}</p>
+                      <button
+                        className='post-user-text'
+                        onClick={openUserModal}
+                      >
+                        {post.postUser}
+                      </button>
                       <p>{post.postBody}</p>
                       <p>{moment(post.date).format('MM/DD/YYYY')}</p>
                     </div>
@@ -104,7 +109,12 @@ export const Posts = ({ user, posts, groupname }) => {
                       <img src={filteredPost.postImg} alt='Po' />
                     ) : null}
                     <div className='post-content'>
-                      <p className='post-user-text'>{filteredPost.postUser}</p>
+                      <button
+                        className='post-user-text'
+                        onClick={openUserModal}
+                      >
+                        {filteredPost.postUser}
+                      </button>
                       <p>{filteredPost.postBody}</p>
                       <p>{moment(filteredPost.date).format('MM/DD/YYYY')}</p>
                     </div>
@@ -123,7 +133,7 @@ export const Posts = ({ user, posts, groupname }) => {
 
       <UserVisit
         userCloseHandle={userCloseHandle}
-        userShow={userShow}
+        show={userShow}
         user={visitTarget}
       />
     </Container>
