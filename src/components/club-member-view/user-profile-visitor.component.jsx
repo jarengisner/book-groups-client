@@ -1,8 +1,11 @@
 import { Modal, Button, Card } from 'react-bootstrap';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ClipLoader } from 'react-spinners';
 
 export const UserVisit = ({ show, userCloseHandle, user }) => {
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
   return (
     <Modal show={show} onHide={userCloseHandle} centered>
       <Modal.Header closeButton></Modal.Header>

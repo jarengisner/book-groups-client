@@ -33,9 +33,21 @@ export const Posts = ({ user, posts, groupname }) => {
 
   const openUserModal = (event) => {
     const visitTarget = event.target.textContent;
+    let userData = {
+      username: '',
+      bio: '',
+      profilePic: '',
+    };
+
     fetch(`http://localhost:8080/users/${visitTarget}`)
       .then((res) => res.json())
-      .then((data) => setVisitTarget(data));
+      .then((data) => {
+        userData.username = data.username;
+        userData.bio = data.bio;
+        userData.profilePic = data.profilePic;
+
+        setVisitTarget(userData);
+      });
 
     setUserShow(true);
   };
