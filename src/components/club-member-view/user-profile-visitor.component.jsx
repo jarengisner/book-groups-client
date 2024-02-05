@@ -1,6 +1,7 @@
 import { Modal, Button, Card } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { ClipLoader } from 'react-spinners';
+import '../../index.css';
 
 export const UserVisit = ({ show, userCloseHandle, user }) => {
   useEffect(() => {
@@ -12,9 +13,12 @@ export const UserVisit = ({ show, userCloseHandle, user }) => {
       <Modal.Body>
         {user ? (
           <Card>
-            <h1>{user.username}</h1>
-            <h2>{user.bio}</h2>
-            <p>Here will be the emblems when we start with that system</p>
+            <div className='profile-visit-body'>
+              <img src={user.profilePic} alt='profile' />
+              <h1>{user.username}</h1>
+              <h2>{user.bio}</h2>
+              <p>Here will be the emblems when we start with that system</p>
+            </div>
           </Card>
         ) : (
           <div>

@@ -77,3 +77,10 @@ code {
 .text-standard {
   font-family: 'Poppins', 'sans-serif';
 }
+
+.profile-visit-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

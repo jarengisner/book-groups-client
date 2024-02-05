@@ -3,51 +3,17 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Navigation } from '../navigation/navigation.component';
 import '../../index.css';
 import { Link } from 'react-router-dom';
+import { Suggested } from './suggested-carousel.component';
+import { ClipLoader } from 'react-spinners';
 
 export const Explore = ({ groupSuggestions }) => {
-  /* const [suggestions, setSuggested] = useState([]);
-  const [groupSuggestions, setGroupSuggestions] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:8080/clubs')
-      .then((res) => res.json())
-      .then((data) => {
-        const clubData = data.map((club) => {
-          return {
-            id: club._id,
-            name: club.name,
-            description: club.description,
-            groupImg: club.groupImg,
-          };
-        });
-
-        console.log(clubData);
-        setGroupSuggestions(clubData);
-      });
-  }, []); */
-  const suggestions = [];
-
   return (
     <Container>
       <Row>
         <Navigation />
       </Row>
       <Row style={{ border: '1px solid grey' }}>
-        <>
-          {suggestions.length > 0 ? (
-            suggestions.map((item) => (
-              <Col>
-                <Card>
-                  <h1>{item.name}</h1>
-                </Card>
-              </Col>
-            ))
-          ) : (
-            <Col>
-              <h1>Empty at the moment</h1>
-            </Col>
-          )}
-        </>
+        <Suggested groups={groupSuggestions} />
       </Row>
       <Row className='groupSuggestionRow' style={{ marginTop: 20 }}>
         <>
