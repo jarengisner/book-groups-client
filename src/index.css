@@ -84,3 +84,8 @@ code {
   align-items: center;
   justify-content: center;
 }
+
+.profile-visitor-container {
+  display: flex;
+  flex-direction: row;
+}

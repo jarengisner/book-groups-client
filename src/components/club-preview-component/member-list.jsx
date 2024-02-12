@@ -29,7 +29,7 @@ export const MemberList = ({ club }) => {
     setMembers(club.members);
     console.log('This is the members');
     console.log(club.members);
-    console.log(members);
+    console.log('members' + members);
   }, []);
 
   return (

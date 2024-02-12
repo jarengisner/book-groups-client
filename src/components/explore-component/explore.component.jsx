@@ -6,7 +6,28 @@ import { Link } from 'react-router-dom';
 import { Suggested } from './suggested-carousel.component';
 import { ClipLoader } from 'react-spinners';
 
-export const Explore = ({ groupSuggestions }) => {
+export const Explore = () => {
+  const [groupSuggestions, setGroupSuggestions] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:8080/clubs')
+      .then((res) => res.json())
+      .then((data) => {
+        const clubData = data.map((club) => {
+          return {
+            id: club._id,
+            name: club.name,
+            description: club.description,
+            groupImg: club.groupImg,
+            members: club.members,
+          };
+        });
+
+        console.log(clubData);
+        setGroupSuggestions(clubData);
+      });
+  }, []);
+
   return (
     <Container>
       <Row>

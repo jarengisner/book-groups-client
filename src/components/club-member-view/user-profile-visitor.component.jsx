@@ -13,10 +13,28 @@ export const UserVisit = ({ show, userCloseHandle, user }) => {
       <Modal.Body>
         {user ? (
           <Card>
-            <div className='profile-visit-body'>
-              <img src={user.profilePic} alt='profile' />
-              <h1>{user.username}</h1>
-              <h2>{user.bio}</h2>
+            <div className='profile-visitor-container'>
+              <div
+                style={{
+                  marginRight: 10,
+                  marginLeft: 10,
+                  marginTop: 5,
+                  marginBottom: 5,
+                }}
+              >
+                {/*Will need to remove this placeholder before we actually implement profile pics */}
+                <img
+                  src={user.profilePic}
+                  alt='profile'
+                  style={{ borderRadius: 25 }}
+                />
+              </div>
+              <div className='profile-visit-body'>
+                <h1>{user.username}</h1>
+                <p>{user.bio}</p>
+              </div>
+            </div>
+            <div className='profile-visit-emblem'>
               <p>Here will be the emblems when we start with that system</p>
             </div>
           </Card>
