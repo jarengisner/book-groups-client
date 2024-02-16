@@ -1,6 +1,5 @@
 import { Carousel, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import { ClipLoader } from 'react-spinners';
 import '../../index.css';
 

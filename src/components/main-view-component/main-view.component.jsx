@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { Navigation } from '../navigation/navigation.component';
+import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Row } from 'react-bootstrap';
 import { Profile } from '../profile-component/profile.component';
@@ -7,7 +6,6 @@ import { Explore } from '../explore-component/explore.component';
 import { Login } from '../login/login.component';
 import { Registration } from '../register/registration.component';
 import { GroupList } from '../group-list-component/group-list.component';
-import Col from 'react-bootstrap';
 import { ClubPreview } from '../club-preview-component/club-preview.component';
 import { MemberView } from '../club-member-view/club-member-view.component';
 

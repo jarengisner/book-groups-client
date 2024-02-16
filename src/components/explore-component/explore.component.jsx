@@ -4,7 +4,6 @@ import { Navigation } from '../navigation/navigation.component';
 import '../../index.css';
 import { Link } from 'react-router-dom';
 import { Suggested } from './suggested-carousel.component';
-import { ClipLoader } from 'react-spinners';
 
 export const Explore = () => {
   const [groupSuggestions, setGroupSuggestions] = useState([]);
@@ -51,7 +50,7 @@ export const Explore = () => {
         <>
           {loaded ? (
             groupSuggestions.map((item) => (
-              <Col md={5} sm={8} lg={5}>
+              <Col md={5} sm={8} lg={5} key={item.name}>
                 <Link to={`/groups/${item.name}`} className='removeDecoration'>
                   <Card style={{ margin: 7 }}>
                     <div className='suggestionsWithImg'>
