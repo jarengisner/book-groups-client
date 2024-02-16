@@ -26,7 +26,7 @@ export const MainView = () => {
     setToken(token);
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     fetch('http://localhost:8080/clubs')
       .then((res) => res.json())
       .then((data) => {
@@ -44,7 +44,7 @@ export const MainView = () => {
         setGroupSuggestions(clubData);
       });
   }, []);
-
+ */
   return (
     <BrowserRouter>
       <Row className='justify-content-md-center'>

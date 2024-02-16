@@ -8,24 +8,35 @@ import { ClipLoader } from 'react-spinners';
 
 export const Explore = () => {
   const [groupSuggestions, setGroupSuggestions] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:8080/clubs')
-      .then((res) => res.json())
-      .then((data) => {
-        const clubData = data.map((club) => {
-          return {
-            id: club._id,
-            name: club.name,
-            description: club.description,
-            groupImg: club.groupImg,
-            members: club.members,
-          };
-        });
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/clubs');
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+
+        const data = await response.json();
+
+        const clubData = data.map((club) => ({
+          id: club._id,
+          name: club.name,
+          description: club.description,
+          groupImg: club.groupImg,
+          members: club.members,
+        }));
 
         console.log(clubData);
         setGroupSuggestions(clubData);
-      });
+        setLoaded(true);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
@@ -38,7 +49,7 @@ export const Explore = () => {
       </Row>
       <Row className='groupSuggestionRow' style={{ marginTop: 20 }}>
         <>
-          {groupSuggestions.length > 0 ? (
+          {loaded ? (
             groupSuggestions.map((item) => (
               <Col md={5} sm={8} lg={5}>
                 <Link to={`/groups/${item.name}`} className='removeDecoration'>
