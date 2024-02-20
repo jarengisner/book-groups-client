@@ -27,9 +27,6 @@ export const MemberList = ({ club }) => {
 
   useEffect(() => {
     setMembers(club.members);
-    console.log('This is the members');
-    console.log(club.members);
-    console.log('members' + members);
   }, []);
 
   return (
@@ -39,7 +36,7 @@ export const MemberList = ({ club }) => {
       ) : (
         <>
           {members.map((person) => (
-            <Card>
+            <Card key={person.username}>
               <img src={person.profilePic} alt='profile'></img>
               <div>
                 <Card.Title>{person.username}</Card.Title>

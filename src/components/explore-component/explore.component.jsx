@@ -8,6 +8,7 @@ import { Suggested } from './suggested-carousel.component';
 export const Explore = () => {
   const [groupSuggestions, setGroupSuggestions] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [tag, setTag] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,6 +19,7 @@ export const Explore = () => {
         }
 
         const data = await response.json();
+        const tagHolder = [];
 
         const clubData = data.map((club) => ({
           id: club._id,
@@ -25,9 +27,16 @@ export const Explore = () => {
           description: club.description,
           groupImg: club.groupImg,
           members: club.members,
+          tags: club.tags,
         }));
 
-        console.log(clubData);
+        clubData.forEach((c) => {
+          tagHolder.push(c.tags);
+        });
+
+        let finalTags = tagHolder.concat();
+        setTag(finalTags);
+
         setGroupSuggestions(clubData);
         setLoaded(true);
       } catch (error) {
@@ -38,6 +47,10 @@ export const Explore = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    console.log(groupSuggestions);
+  }, [groupSuggestions]);
+
   return (
     <Container>
       <Row>
@@ -45,6 +58,11 @@ export const Explore = () => {
       </Row>
       <Row style={{ border: '1px solid grey' }}>
         <Suggested groups={groupSuggestions} />
+      </Row>
+      <Row style={{ border: '1px solid grey' }}>
+        {tag.map((t) => (
+          <h1>{t}</h1>
+        ))}
       </Row>
       <Row className='groupSuggestionRow' style={{ marginTop: 20 }}>
         <>

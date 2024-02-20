@@ -8,8 +8,6 @@ export const Suggested = ({ groups }) => {
     .sort((a, b) => b.members.length - a.members.length)
     .splice(0, 5);
 
-  console.log('new', newFiltered);
-
   return (
     <>
       {!newFiltered.length > 0 ? (
