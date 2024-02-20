@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Dropdown } from 'react-bootstrap';
 import { Navigation } from '../navigation/navigation.component';
 import '../../index.css';
 import { Link } from 'react-router-dom';
@@ -30,12 +30,14 @@ export const Explore = () => {
           tags: club.tags,
         }));
 
-        clubData.forEach((c) => {
-          tagHolder.push(c.tags);
-        });
+        for (let i = 0; i < clubData.length; i++) {
+          let current = clubData[i].tags;
+          for (let j = 0; j < current.length; j++) {
+            tagHolder.push(current[j]);
+          }
+        }
 
-        let finalTags = tagHolder.concat();
-        setTag(finalTags);
+        setTag(Array.from(new Set(tagHolder)));
 
         setGroupSuggestions(clubData);
         setLoaded(true);
@@ -56,20 +58,23 @@ export const Explore = () => {
       <Row>
         <Navigation />
       </Row>
-      <Row style={{ border: '1px solid grey' }}>
-        <Suggested groups={groupSuggestions} />
-      </Row>
-      <Row style={{ border: '1px solid grey' }}>
-        {tag.map((t) => (
-          <h1>{t}</h1>
-        ))}
-      </Row>
-      <Row className='groupSuggestionRow' style={{ marginTop: 20 }}>
-        <>
-          {loaded ? (
-            groupSuggestions.map((item) => (
-              <Col md={5} sm={8} lg={5} key={item.name}>
-                <Link to={`/groups/${item.name}`} className='removeDecoration'>
+      <Row>
+        <Col sm={3}>
+          <div className='tag-parent-div'>
+            {tag.map((t) => (
+              <h1>{t}</h1>
+            ))}
+          </div>
+        </Col>
+        <Col sm={6}>
+          <>
+            {loaded ? (
+              groupSuggestions.map((item) => (
+                <Link
+                  to={`/groups/${item.name}`}
+                  className='removeDecoration'
+                  key={item.name}
+                >
                   <Card style={{ margin: 7 }}>
                     <div className='suggestionsWithImg'>
                       <img
@@ -84,12 +89,15 @@ export const Explore = () => {
                     </div>
                   </Card>
                 </Link>
-              </Col>
-            ))
-          ) : (
-            <Col>Loading...</Col>
-          )}
-        </>
+              ))
+            ) : (
+              <h1>Loading...</h1>
+            )}
+          </>
+        </Col>
+        <Col sm={3}>
+          <Suggested groups={groupSuggestions} />
+        </Col>
       </Row>
     </Container>
   );

@@ -15,28 +15,48 @@ export const Suggested = ({ groups }) => {
           <ClipLoader color='#36D7B7' size={50} />
         </div>
       ) : (
-        <Carousel>
+        <div>
           {newFiltered.map((item) => (
-            <Carousel.Item key={item.id}>
-              <Link to={`/groups/${item.name}`} className='removeDecoration'>
-                <Card style={{ margin: 7 }}>
-                  <div className='suggestionsWithImg'>
-                    <img
-                      src={item.groupImg}
-                      alt='group logo'
-                      className='profilePic'
-                    ></img>
-                    <div style={{ width: '60%' }}>
-                      <Card.Title>{item.name}</Card.Title>
-                      <Card.Subtitle>{item.description}</Card.Subtitle>
-                    </div>
+            <Link
+              to={`/groups/${item.name}`}
+              className='removeDecoration'
+              key={item.name}
+            >
+              <Card style={{ marginTop: 7 }}>
+                <div className='suggestionsWithImg'>
+                  <img
+                    src={item.groupImg}
+                    alt='group logo'
+                    className='profilePic'
+                  ></img>
+                  <div style={{ width: '60%' }}>
+                    <Card.Title>{item.name}</Card.Title>
+                    <Card.Subtitle>{item.description}</Card.Subtitle>
                   </div>
-                </Card>
-              </Link>
-            </Carousel.Item>
+                </div>
+              </Card>
+            </Link>
           ))}
-        </Carousel>
+        </div>
       )}
     </>
   );
 };
+
+{
+  /* <Link to={`/groups/${item.name}`} className='removeDecoration'>
+          <Card style={{ marginTop: 7 }}>
+            <div className='suggestionsWithImg'>
+              <img
+                src={item.groupImg}
+                alt='group logo'
+                className='profilePic'
+              ></img>
+              <div style={{ width: '60%' }}>
+                <Card.Title>{item.name}</Card.Title>
+                <Card.Subtitle>{item.description}</Card.Subtitle>
+              </div>
+            </div>
+          </Card>
+        </Link> */
+}
