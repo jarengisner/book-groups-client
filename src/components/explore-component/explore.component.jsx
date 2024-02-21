@@ -9,6 +9,7 @@ export const Explore = () => {
   const [groupSuggestions, setGroupSuggestions] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [tag, setTag] = useState([]);
+  const [filter, setFilter] = useState('All');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,6 +53,10 @@ export const Explore = () => {
   useEffect(() => {
     console.log(groupSuggestions);
   }, [groupSuggestions]);
+
+  const filterHandler = () => {
+    //This needs to create a new array of the groupSuggestions that contains the
+  };
 
   return (
     <Container>
