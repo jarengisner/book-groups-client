@@ -2,11 +2,16 @@ import { Carousel, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
 import '../../index.css';
+import { useEffect } from 'react';
 
 export const Suggested = ({ groups }) => {
   const newFiltered = groups
     .sort((a, b) => b.members.length - a.members.length)
     .splice(0, 5);
+
+  useEffect(() => {
+    console.log(newFiltered);
+  }, []);
 
   return (
     <>
@@ -42,21 +47,3 @@ export const Suggested = ({ groups }) => {
     </>
   );
 };
-
-{
-  /* <Link to={`/groups/${item.name}`} className='removeDecoration'>
-          <Card style={{ marginTop: 7 }}>
-            <div className='suggestionsWithImg'>
-              <img
-                src={item.groupImg}
-                alt='group logo'
-                className='profilePic'
-              ></img>
-              <div style={{ width: '60%' }}>
-                <Card.Title>{item.name}</Card.Title>
-                <Card.Subtitle>{item.description}</Card.Subtitle>
-              </div>
-            </div>
-          </Card>
-        </Link> */
-}

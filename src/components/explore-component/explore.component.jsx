@@ -4,58 +4,37 @@ import { Navigation } from '../navigation/navigation.component';
 import '../../index.css';
 import { Link } from 'react-router-dom';
 import { Suggested } from './suggested-carousel.component';
+import { CardDisplay } from './main-card-display.component';
+import { ClipLoader } from 'react-spinners';
 
-export const Explore = () => {
-  const [groupSuggestions, setGroupSuggestions] = useState([]);
+export const Explore = ({ user, initialRenderedGroups, tags }) => {
   const [loaded, setLoaded] = useState(false);
   const [tag, setTag] = useState([]);
   const [filter, setFilter] = useState('All');
+  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+  const [backupSuggestions, setBackup] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:8080/clubs');
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
-        }
+    if (initialRenderedGroups.length === 0) {
+      return;
+    }
 
-        const data = await response.json();
-        const tagHolder = [];
+    setFilteredSuggestions(initialRenderedGroups);
+    setBackup(initialRenderedGroups);
+    console.log('Explore:', initialRenderedGroups);
+  }, [tags, initialRenderedGroups]);
 
-        const clubData = data.map((club) => ({
-          id: club._id,
-          name: club.name,
-          description: club.description,
-          groupImg: club.groupImg,
-          members: club.members,
-          tags: club.tags,
-        }));
+  const filterHandler = (selectedFilter) => {
+    setFilter(selectedFilter);
 
-        for (let i = 0; i < clubData.length; i++) {
-          let current = clubData[i].tags;
-          for (let j = 0; j < current.length; j++) {
-            tagHolder.push(current[j]);
-          }
-        }
-
-        setTag(Array.from(new Set(tagHolder)));
-
-        setGroupSuggestions(clubData);
-        setLoaded(true);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    console.log(groupSuggestions);
-  }, [groupSuggestions]);
-
-  const filterHandler = () => {
-    //This needs to create a new array of the groupSuggestions that contains the
+    if (selectedFilter === 'All') {
+      setFilteredSuggestions(backupSuggestions);
+    } else {
+      const filtered = backupSuggestions.filter((group) =>
+        group.tags.includes(selectedFilter)
+      );
+      setFilteredSuggestions([...filtered]);
+    }
   };
 
   return (
@@ -64,44 +43,35 @@ export const Explore = () => {
         <Navigation />
       </Row>
       <Row>
-        <Col sm={3}>
-          <div className='tag-parent-div'>
-            {tag.map((t) => (
-              <h1>{t}</h1>
-            ))}
-          </div>
+        <Col>
+          <button onClick={() => filterHandler('All')}>All</button>
+          {tags ? (
+            tags.map((t) => (
+              <button onClick={() => filterHandler(t)} key={t}>
+                <span>{t}</span>
+              </button>
+            ))
+          ) : (
+            <h1>Loading......</h1>
+          )}
         </Col>
         <Col sm={6}>
-          <>
-            {loaded ? (
-              groupSuggestions.map((item) => (
-                <Link
-                  to={`/groups/${item.name}`}
-                  className='removeDecoration'
-                  key={item.name}
-                >
-                  <Card style={{ margin: 7 }}>
-                    <div className='suggestionsWithImg'>
-                      <img
-                        src={item.groupImg}
-                        alt='group logo'
-                        className='profilePic'
-                      ></img>
-                      <div style={{ width: '60%' }}>
-                        <Card.Title>{item.name}</Card.Title>
-                        <Card.Subtitle>{item.description}</Card.Subtitle>
-                      </div>
-                    </div>
-                  </Card>
-                </Link>
-              ))
-            ) : (
-              <h1>Loading...</h1>
-            )}
-          </>
+          {!filteredSuggestions.length > 0 ? (
+            <div>
+              <ClipLoader color='#36D7B7' size={50} />
+            </div>
+          ) : (
+            <CardDisplay groups={filteredSuggestions} filter={filter} />
+          )}
         </Col>
         <Col sm={3}>
-          <Suggested groups={groupSuggestions} />
+          {!backupSuggestions.length > 0 ? (
+            <div>
+              <ClipLoader color='#36D7B7' size={50} />
+            </div>
+          ) : (
+            <Suggested groups={backupSuggestions} />
+          )}
         </Col>
       </Row>
     </Container>

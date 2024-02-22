@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Row } from 'react-bootstrap';
 import { Profile } from '../profile-component/profile.component';
@@ -8,23 +8,22 @@ import { Registration } from '../register/registration.component';
 import { GroupList } from '../group-list-component/group-list.component';
 import { ClubPreview } from '../club-preview-component/club-preview.component';
 import { MemberView } from '../club-member-view/club-member-view.component';
+import { ClipLoader } from 'react-spinners';
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
   const storedToken = localStorage.getItem('token');
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
-  //groups and books to be passed to the explore component
-  const [groupSuggestions, setGroupSuggestions] = useState([]);
-  //books
-  /* const [suggestions, setSuggested] = useState([]); */
+  const [initialGroups, setInitialGroups] = useState([]);
+  const [tag, setTag] = useState([]);
 
   const onLogin = (user, token) => {
     setUser(user);
     setToken(token);
   };
 
-  /* useEffect(() => {
+  useEffect(() => {
     fetch('http://localhost:8080/clubs')
       .then((res) => res.json())
       .then((data) => {
@@ -35,14 +34,21 @@ export const MainView = () => {
             description: club.description,
             groupImg: club.groupImg,
             members: club.members,
+            tags: club.tags,
           };
         });
 
-        console.log(clubData);
-        setGroupSuggestions(clubData);
+        const uniqueTags = Array.from(
+          new Set(clubData.flatMap((group) => group.tags))
+        );
+        /* console.log(uniqueTags); */
+        setTag(uniqueTags);
+
+        setInitialGroups(clubData);
+        console.log('main:', clubData);
       });
   }, []);
- */
+
   return (
     <BrowserRouter>
       <Row className='justify-content-md-center'>
@@ -51,10 +57,16 @@ export const MainView = () => {
             path='/'
             element={
               <>
-                {user && token ? (
-                  <Explore user={user} groupSuggestions={groupSuggestions} />
-                ) : (
+                {!user || !token ? (
                   <Navigate to='/login' />
+                ) : initialGroups.length === 0 ? (
+                  <h1>Loading.....</h1>
+                ) : (
+                  <Explore
+                    user={user}
+                    initialRenderedGroups={initialGroups}
+                    tags={tag}
+                  />
                 )}
               </>
             }
@@ -71,7 +83,7 @@ export const MainView = () => {
                       setToken(null);
                       localStorage.clear();
                     }}
-                    groupSuggestions={groupSuggestions}
+                    groupSuggestions={initialGroups}
                   />
                 ) : (
                   <Navigate to='/login' />
