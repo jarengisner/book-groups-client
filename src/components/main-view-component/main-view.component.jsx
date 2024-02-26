@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Row } from 'react-bootstrap';
+import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
+import { Card, Col, Row } from 'react-bootstrap';
 import { Profile } from '../profile-component/profile.component';
-import { Explore } from '../explore-component/explore.component';
+
 import { Login } from '../login/login.component';
 import { Registration } from '../register/registration.component';
 import { GroupList } from '../group-list-component/group-list.component';
 import { ClubPreview } from '../club-preview-component/club-preview.component';
 import { MemberView } from '../club-member-view/club-member-view.component';
 import { ClipLoader } from 'react-spinners';
+import { Navigation } from '../navigation/navigation.component';
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -51,6 +52,7 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
+      <Navigation />
       <Row className='justify-content-md-center'>
         <Routes>
           <Route
@@ -62,11 +64,41 @@ export const MainView = () => {
                 ) : initialGroups.length === 0 ? (
                   <h1>Loading.....</h1>
                 ) : (
-                  <Explore
-                    user={user}
-                    initialRenderedGroups={initialGroups}
-                    tags={tag}
-                  />
+                  <>
+                    <Col>
+                      {tag.length > 0 ? (
+                        tag.map((t) => <h1 key={t}>{t}</h1>)
+                      ) : (
+                        <h1>Loading.....</h1>
+                      )}
+                    </Col>
+                    <Col>
+                      {initialGroups.map((item) => (
+                        <Link
+                          to={`/groups/${item.name}`}
+                          className='removeDecoration'
+                          key={item.name}
+                        >
+                          <Card style={{ margin: 7 }}>
+                            <div className='suggestionsWithImg'>
+                              <img
+                                src={item.groupImg}
+                                alt='group logo'
+                                className='profilePic'
+                              ></img>
+                              <div style={{ width: '60%' }}>
+                                <Card.Title>{item.name}</Card.Title>
+                                <Card.Subtitle>
+                                  {item.description}
+                                </Card.Subtitle>
+                              </div>
+                            </div>
+                          </Card>
+                        </Link>
+                      ))}
+                    </Col>
+                    <Col>{/* right column */}</Col>
+                  </>
                 )}
               </>
             }

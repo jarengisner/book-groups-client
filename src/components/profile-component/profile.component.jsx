@@ -23,9 +23,6 @@ export const Profile = ({ user, onLogout, groupSuggestions }) => {
   return (
     <Container fluid>
       <Row>
-        <Navigation />
-      </Row>
-      <Row>
         {/* Left Content */}
         <Col md={8}>
           {/* First Component */}

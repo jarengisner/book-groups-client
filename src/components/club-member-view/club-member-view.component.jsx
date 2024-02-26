@@ -37,9 +37,6 @@ export const MemberView = ({ user }) => {
   return (
     <Container>
       <Row>
-        <Navigation />
-      </Row>
-      <Row>
         <Col sm={12} md={9}>
           {/* This is gonna be the club preview, nothing else needs to be added here */}
           <>

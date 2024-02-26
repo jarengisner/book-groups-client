@@ -12,9 +12,9 @@ export const Navigation = () => {
       expand='lg'
       className='bg-body-tertiary justify-content-between'
       data-bs-theme='dark'
-      style={{ height: 80 }}
+      style={{ height: 80, margin: 0, padding: 0 }}
     >
-      <Container>
+      <Container fluid>
         <Navbar.Brand as={Link} to='/'>
           <span className='navbar-title'>BookShelf</span>
         </Navbar.Brand>
