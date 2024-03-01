@@ -10,6 +10,7 @@ import { ClubPreview } from '../club-preview-component/club-preview.component';
 import { MemberView } from '../club-member-view/club-member-view.component';
 import { ClipLoader } from 'react-spinners';
 import { Navigation } from '../navigation/navigation.component';
+import { Recommendation } from './recommended.component';
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -18,6 +19,9 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [initialGroups, setInitialGroups] = useState([]);
   const [tag, setTag] = useState([]);
+  const [recommended, setRecommended] = useState([]);
+  const [query, setQuery] = useState('All');
+  const [filteredResults, setFilteredResults] = useState([]);
 
   const onLogin = (user, token) => {
     setUser(user);
@@ -42,13 +46,23 @@ export const MainView = () => {
         const uniqueTags = Array.from(
           new Set(clubData.flatMap((group) => group.tags))
         );
-        /* console.log(uniqueTags); */
-        setTag(uniqueTags);
 
+        setTag(uniqueTags);
         setInitialGroups(clubData);
+        setFilteredResults(clubData);
         console.log('main:', clubData);
       });
   }, []);
+
+  const queryHandler = (arg) => {
+    if (arg === 'All') {
+      setQuery('All');
+      setFilteredResults(initialGroups);
+    } else {
+      let current = initialGroups.filter((group) => group.tags.includes(arg));
+      setFilteredResults(current);
+    }
+  };
 
   return (
     <BrowserRouter>
@@ -65,15 +79,32 @@ export const MainView = () => {
                   <h1>Loading.....</h1>
                 ) : (
                   <>
-                    <Col>
-                      {tag.length > 0 ? (
-                        tag.map((t) => <h1 key={t}>{t}</h1>)
-                      ) : (
-                        <h1>Loading.....</h1>
-                      )}
+                    <Col style={{ marginTop: 80 }}>
+                      <div className='left-side-filter'>
+                        <button
+                          key='allkey'
+                          onClick={() => queryHandler('All')}
+                          className='filterButton'
+                        >
+                          All
+                        </button>
+                        {tag.length > 0 ? (
+                          tag.map((t) => (
+                            <button
+                              key={t}
+                              onClick={() => queryHandler(t)}
+                              className='filterButton'
+                            >
+                              {t}
+                            </button>
+                          ))
+                        ) : (
+                          <h1>Loading.....</h1>
+                        )}
+                      </div>
                     </Col>
                     <Col>
-                      {initialGroups.map((item) => (
+                      {filteredResults.map((item) => (
                         <Link
                           to={`/groups/${item.name}`}
                           className='removeDecoration'
@@ -97,7 +128,9 @@ export const MainView = () => {
                         </Link>
                       ))}
                     </Col>
-                    <Col>{/* right column */}</Col>
+                    <Col>
+                      <Recommendation groups={initialGroups} />
+                    </Col>
                   </>
                 )}
               </>
