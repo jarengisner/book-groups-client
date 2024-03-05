@@ -15,12 +15,12 @@ export const Navigation = () => {
       style={{ height: 80, margin: 0, padding: 0 }}
     >
       <Container fluid>
-        <Navbar.Brand as={Link} to='/'>
+        <Navbar.Brand as={Link} to='/' style={{ marginLeft: '10px' }}>
           <span className='navbar-title'>BookShelf</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav className='me-auto'>
+          <Nav className='me-auto' style={{ marginLeft: '10px' }}>
             <Nav.Link as={Link} to='/' className='text-standard'>
               Home
             </Nav.Link>
@@ -30,7 +30,19 @@ export const Navigation = () => {
             </Nav.Link>
           </Nav>
           <Nav className='justify-content-end'>
-            <Nav.Link as={Link} to='/profile' className='text-standard'>
+            <Nav.Link
+              as={Link}
+              to='/creategroup'
+              className='create-group-button'
+            >
+              Create Group
+            </Nav.Link>
+            <Nav.Link
+              as={Link}
+              to='/profile'
+              className='text-standard'
+              style={{ marginRight: '20px' }}
+            >
               <FontAwesomeIcon icon={faUser} />
             </Nav.Link>
           </Nav>

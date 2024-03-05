@@ -128,3 +128,19 @@ code {
   background-color: lightgray;
   border: none;
 }
+
+.create-group-button {
+  font-family: 'Poppins', 'sans-serif';
+  border: 1px solid #ffffff8c;
+  border-radius: 20px;
+  margin-right: 20px;
+}
+
+.selected-tags {
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgb(246, 79, 79);
+    color: white;
+  }
+}

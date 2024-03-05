@@ -11,6 +11,7 @@ import { MemberView } from '../club-member-view/club-member-view.component';
 import { ClipLoader } from 'react-spinners';
 import { Navigation } from '../navigation/navigation.component';
 import { Recommendation } from './recommended.component';
+import { CreateGroup } from '../create-group/create-group.component';
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -158,6 +159,10 @@ export const MainView = () => {
           />
           <Route path='/login' element={<Login onLogin={onLogin} />} />
           <Route path='/register' element={<Registration />} />
+          <Route
+            path='/creategroup'
+            element={<CreateGroup user={user} tags={tag} />}
+          />
           <Route
             path='/mygroups'
             element={
