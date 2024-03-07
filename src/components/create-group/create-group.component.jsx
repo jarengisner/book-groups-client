@@ -10,6 +10,7 @@ export const CreateGroup = ({ user, tags }) => {
   const [initialPost, setInitialPost] = useState('');
   const [groupTags, setGroupTags] = useState([]);
   const [query, setQuery] = useState('');
+  const [message, setMessage] = useState('');
 
   //sets state for each property of a group
   const nameChangeHandle = (event) => {
@@ -39,7 +40,30 @@ export const CreateGroup = ({ user, tags }) => {
   };
 
   //handles creation of group fetch requests
-  const createHandler = () => {};
+  const submitHandle = (name, bio, groupTags, user) => {
+    const userData = {
+      username: user.username,
+      bio: user.bio,
+    };
+
+    fetch('http://localhost:8080/clubs', {
+      method: 'POST',
+      body: {
+        name: name,
+        description: bio,
+        groupCreator: userData,
+        tags: groupTags,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) setMessage('Successfully created group');
+      })
+      .catch((err) => {
+        console.log(err);
+        setMessage('Failed to create group');
+      });
+  };
 
   return (
     <Container className='create-group-container-layer'>
