@@ -42,97 +42,87 @@ export const CreateGroup = ({ user, tags }) => {
   const createHandler = () => {};
 
   return (
-    <Container>
-      <div>upload profile pic eventually</div>
-      <div>
-        <h1>Group Name</h1>
-        <input
-          type='text'
-          value={name}
-          onChange={nameChangeHandle}
-          placeholder='Enter the name of your new group...'
-        ></input>
-      </div>
-      <div>
-        <h1>Group Bio</h1>
-        <input
-          type='text'
-          value={bio}
-          onChange={bioChangeHandler}
-          placeholder='Enter a bio for your group...'
-        />
-      </div>
-      <div>Write an initial post</div>
-      {/* look for details about what exactly we added in the post creation */}
-      <div>
-        <h1>Select tags for your group</h1>
-        <input
-          type='text'
-          value={query}
-          onChange={querySearchHandle}
-          placeholder='Search or create tag...'
-        />
-        {groupTags.length === 0 ? (
-          <p>No tags selected so far</p>
-        ) : (
-          <div>
-            {groupTags.map((t) => (
-              <Button
-                variant='outline-secondary'
-                onClick={() => tagsHandler(t)}
-                className='selected-tags'
-              >
-                {t}
-              </Button>
-            ))}
-          </div>
-        )}
-        <div className='choices-container'>
-          {query && !tags.includes(query.toLowerCase()) && (
-            <Row>
-              <Button
-                onClick={() => queryCreateHandle(query)}
-                style={{ marginBottom: '20px', width: '300px' }}
-              >
-                Create {query}
-              </Button>
-            </Row>
+    <Container className='create-group-container-layer'>
+      <div className='create-group-outer'>
+        <div className='create-group-div'>
+          Tell us all about your group, all details can be changed later on.
+        </div>
+        <div className='create-group-div'>
+          <h1>Group Name</h1>
+          <input
+            type='text'
+            value={name}
+            onChange={nameChangeHandle}
+            placeholder='Enter the name of your new group...'
+          ></input>
+        </div>
+        <div className='create-group-div'>
+          <h1>Group Bio</h1>
+          <input
+            type='text'
+            value={bio}
+            onChange={bioChangeHandler}
+            placeholder='Enter a bio for your group...'
+          />
+        </div>
+        <div className='create-group-div'>Write an initial post</div>
+        {/* look for details about what exactly we added in the post creation */}
+        <div className='create-group-div'>
+          <h1 className='create-group-div'>Select tags for your group</h1>
+          <input
+            type='text'
+            value={query}
+            onChange={querySearchHandle}
+            placeholder='Search or create tag...'
+          />
+          {groupTags.length === 0 ? (
+            <p className='create-group-div'>No tags selected so far</p>
+          ) : (
+            <div className='create-group-div'>
+              {groupTags.map((t) => (
+                <Button
+                  variant='outline-secondary'
+                  onClick={() => tagsHandler(t)}
+                  className='selected-tags'
+                >
+                  {t}
+                </Button>
+              ))}
+            </div>
           )}
-          <div>
-            {/* <Row>
+          <div className='choices-container'>
+            {query && !tags.includes(query.toLowerCase()) && (
+              <Row>
+                <Button
+                  onClick={() => queryCreateHandle(query)}
+                  style={{ marginBottom: '20px', width: '300px' }}
+                >
+                  Create {query}
+                </Button>
+              </Row>
+            )}
+            <div>
               {tags.length > 0 ? (
-                query ? (
-                  tags
-                    .filter((tag) => tag.includes(query.toLowerCase()))
-                    .map((t) => (
-                      <Col md={3} style={{ marginTop: 8 }}>
-                        <Button key={t} onClick={() => tagsHandler(t)}>
-                          {t}
-                        </Button>
-                      </Col>
-                    ))
-                ) : (
-                  tags.map((t) => (
-                    <Col md={3} style={{ marginTop: 8 }}>
-                      <Button key={t} onClick={() => tagsHandler(t)}>
-                        {t}
-                      </Button>
-                    </Col>
-                  ))
-                )
-              ) : (
-                <h1>Loading.....</h1>
-              )}
-            </Row> */}
-
-            {tags.length > 0 ? (
-              <div>
-                {query ? (
-                  <Row>
-                    {tags
-                      .filter((tag) => tag.includes(query.toLowerCase()))
-                      .map((t) => (
-                        <Col key={t} style={{ marginBottom: 8 }}>
+                <div>
+                  {query ? (
+                    <Row>
+                      {tags
+                        .filter((tag) => tag.includes(query.toLowerCase()))
+                        .map((t) => (
+                          <Col key={t} style={{ marginBottom: 8 }}>
+                            <Button
+                              onClick={() => tagsHandler(t)}
+                              style={{ width: '125px' }}
+                            >
+                              {t}
+                            </Button>
+                          </Col>
+                        ))}
+                    </Row>
+                  ) : (
+                    <Row>
+                      {tags.map((t) => (
+                        <Col key={t} md={3} style={{ marginBottom: 8 }}>
                           <Button
                             onClick={() => tagsHandler(t)}
                             style={{ width: '125px' }}
@@ -141,25 +131,13 @@ export const CreateGroup = ({ user, tags }) => {
                           </Button>
                         </Col>
                       ))}
-                  </Row>
-                ) : (
-                  <Row>
-                    {tags.map((t) => (
-                      <Col key={t} md={3} style={{ marginBottom: 8 }}>
-                        <Button
-                          onClick={() => tagsHandler(t)}
-                          style={{ width: '125px' }}
-                        >
-                          {t}
-                        </Button>
-                      </Col>
-                    ))}
-                  </Row>
-                )}
-              </div>
-            ) : (
-              <h1>Loading.....</h1>
-            )}
+                    </Row>
+                  )}
+                </div>
+              ) : (
+                <h1>Loading.....</h1>
+              )}
+            </div>
           </div>
         </div>
       </div>

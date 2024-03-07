@@ -151,3 +151,21 @@ code {
   align-items: center;
   justify-content: center;
 }
+
+.create-group-div {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.create-group-outer {
+  margin-top: 10px;
+  background-color: rgb(242, 242, 242);
+  width: 70%;
+  border-radius: 20px;
+}
+
+.create-group-container-layer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
