@@ -168,7 +168,7 @@ export const MainView = () => {
             element={
               <>
                 {user && token ? (
-                  <GroupList user={user} />
+                  <GroupList user={user} groups={initialGroups} />
                 ) : (
                   <Navigate to='/login' />
                 )}

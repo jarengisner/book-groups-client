@@ -137,6 +137,7 @@ code {
 }
 
 .selected-tags {
+  background-color: white;
   transition: background-color 0.3s ease;
 
   &:hover {
@@ -168,4 +169,17 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.create-group-input {
+  border: none;
+  width: 30%;
+  height: 40px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.create-group-submit-button {
+  width: 300px;
+  font-family: Poppins, sans-serif;
 }

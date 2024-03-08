@@ -48,21 +48,33 @@ export const CreateGroup = ({ user, tags }) => {
 
     fetch('http://localhost:8080/clubs', {
       method: 'POST',
-      body: {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
         name: name,
         description: bio,
         groupCreator: userData,
         tags: groupTags,
-      },
+      }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+        return res.json();
+      })
       .then((data) => {
         if (data) setMessage('Successfully created group');
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         setMessage('Failed to create group');
       });
+  };
+
+  const submitTest = (name, bio, groupTags, user) => {
+    console.log(name, bio, groupTags, user);
   };
 
   return (
@@ -72,32 +84,33 @@ export const CreateGroup = ({ user, tags }) => {
           Tell us all about your group, all details can be changed later on.
         </div>
         <div className='create-group-div'>
-          <h1>Group Name</h1>
+          <h2>Group Name</h2>
           <input
             type='text'
             value={name}
             onChange={nameChangeHandle}
             placeholder='Enter the name of your new group...'
+            className='create-group-input'
           ></input>
         </div>
         <div className='create-group-div'>
-          <h1>Group Bio</h1>
+          <h2>Group Bio</h2>
           <input
             type='text'
             value={bio}
             onChange={bioChangeHandler}
             placeholder='Enter a bio for your group...'
+            className='create-group-input'
           />
         </div>
-        <div className='create-group-div'>Write an initial post</div>
-        {/* look for details about what exactly we added in the post creation */}
         <div className='create-group-div'>
-          <h1 className='create-group-div'>Select tags for your group</h1>
+          <h2 className='create-group-div'>Select tags for your group</h2>
           <input
             type='text'
             value={query}
             onChange={querySearchHandle}
             placeholder='Search or create tag...'
+            className='create-group-input'
           />
           {groupTags.length === 0 ? (
             <p className='create-group-div'>No tags selected so far</p>
@@ -105,7 +118,7 @@ export const CreateGroup = ({ user, tags }) => {
             <div className='create-group-div'>
               {groupTags.map((t) => (
                 <Button
-                  variant='outline-secondary'
+                  variant='outline-dark'
                   onClick={() => tagsHandler(t)}
                   className='selected-tags'
                 >
@@ -164,19 +177,17 @@ export const CreateGroup = ({ user, tags }) => {
             </div>
           </div>
         </div>
+        <div className='create-group-div'>
+          {/* when the my groups page is built, this will also relocate to that page, passing user */}
+          <Button
+            className='create-group-submit-button'
+            variant='success'
+            onClick={() => submitHandle(name, bio, groupTags, user)}
+          >
+            Create Group
+          </Button>
+        </div>
       </div>
     </Container>
   );
 };
-
-/* {tags.length > 0 ? (
-    tags.map((t) => (
-      <Col md={3} style={{ marginTop: 8 }}>
-        <Button key={t} onClick={() => tagsHandler(t)}>
-          {t}
-        </Button>
-      </Col>
-    ))
-  ) : (
-    <h1>Loading.....</h1>
-  )} */
