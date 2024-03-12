@@ -12,17 +12,27 @@ import { ClipLoader } from 'react-spinners';
 import { Navigation } from '../navigation/navigation.component';
 import { Recommendation } from './recommended.component';
 import { CreateGroup } from '../create-group/create-group.component';
+import { EditGroups } from '../group-list-component/group-editing.component';
 
 export const MainView = () => {
+  //State to check user and token for security
   const storedUser = JSON.parse(localStorage.getItem('user'));
   const storedToken = localStorage.getItem('token');
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
+
+  //initialGroups holds all of the groups fetched from the Db
   const [initialGroups, setInitialGroups] = useState([]);
+  //Holds all of our tags for filtering the groups 'genre'
   const [tag, setTag] = useState([]);
+  //Holds recommended groups
   const [recommended, setRecommended] = useState([]);
+  //Holds current search state
   const [query, setQuery] = useState('All');
+  //Holds results filtered by search
   const [filteredResults, setFilteredResults] = useState([]);
+  //Holds the current group that is being edited
+  const [currentAdminGroup, setCurrentAdminGroup] = useState(null);
 
   const onLogin = (user, token) => {
     setUser(user);
@@ -55,6 +65,7 @@ export const MainView = () => {
       });
   }, []);
 
+  //Handles all filter results
   const queryHandler = (arg) => {
     if (arg === 'All') {
       setQuery('All');
@@ -63,6 +74,11 @@ export const MainView = () => {
       let current = initialGroups.filter((group) => group.tags.includes(arg));
       setFilteredResults(current);
     }
+  };
+
+  //Handles state lifting to recieve which group is being edited
+  const groupEditSelection = (group) => {
+    setCurrentAdminGroup(group);
   };
 
   return (
@@ -168,7 +184,11 @@ export const MainView = () => {
             element={
               <>
                 {user && token ? (
-                  <GroupList user={user} groups={initialGroups} />
+                  <GroupList
+                    user={user}
+                    groups={initialGroups}
+                    groupEditSelection={groupEditSelection}
+                  />
                 ) : (
                   <Navigate to='/login' />
                 )}
@@ -193,6 +213,18 @@ export const MainView = () => {
               <>
                 {user && token ? (
                   <MemberView user={user} />
+                ) : (
+                  <Navigate to='/login' />
+                )}
+              </>
+            }
+          />
+          <Route
+            path='/groups/edit'
+            element={
+              <>
+                {user && token ? (
+                  <EditGroups group={currentAdminGroup} />
                 ) : (
                   <Navigate to='/login' />
                 )}
