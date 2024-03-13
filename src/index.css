@@ -183,3 +183,17 @@ code {
   width: 300px;
   font-family: Poppins, sans-serif;
 }
+
+.group-edit-inner-container {
+  background-color: lightblue;
+  margin-top: 3px;
+  border: 1px solid gray;
+  border-radius: 15px;
+  margin-right: 5px;
+}
+
+.my-groups-inner-container {
+  /* margin-left: 7%;
+  margin-right: 7%;
+  border-radius: 15px; */
+}

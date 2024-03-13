@@ -2,10 +2,15 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { Navigation } from '../navigation/navigation.component';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { EditGroups } from './group-editing.component';
 
-export const GroupList = ({ user, groups, groupEditSelection }) => {
+//CSS import
+import '../../index.css';
+
+export const GroupList = ({ user, groups, tags }) => {
   const [myGroups, setMyGroups] = useState([]);
-  const [memberOfGroups, setMemberOfGroups] = useState([]);
+  const [selectedGroup, setSelectedGroup] = useState(null);
+  const [showEditingMenu, setShowEditingMenu] = useState(false);
 
   useEffect(() => {
     const currentUserGroups = groups.filter(
@@ -21,38 +26,91 @@ export const GroupList = ({ user, groups, groupEditSelection }) => {
     /* setMemberOfGroups(currentMemberOf); */
   }, [groups]);
 
+  //sets state for group to be edited
+  const groupEditSelection = (group) => {
+    setSelectedGroup(group);
+    setShowEditingMenu(true);
+  };
+
   return (
     <Container>
-      <Row>
-        <Col md={8}>
-          <h2>Your Groups</h2>
-          {myGroups.length > 0 ? (
-            myGroups.map((g) => (
-              <Card>
-                <h1>{g.name}</h1>
-                <p>{g.description}</p>
-                <div>
-                  <Link to='/groups/edit'>
-                    <Button onClick={() => groupEditSelection(g)}>
-                      Edit Details
-                    </Button>
-                  </Link>
-                </div>
-              </Card>
-            ))
-          ) : (
-            <h1>Loading....</h1>
-          )}
-        </Col>
-        <Col md={4}>
-          <div style={{ border: '1px solid black' }}>
-            <h2>Groups that you're a member of...</h2>
-            <p>
-              Need to create groups under a different user to test this section
-            </p>
-          </div>
-        </Col>
-      </Row>
+      {!showEditingMenu ? (
+        <div className='my-groups-inner-container'>
+          <Row>
+            <Col>
+              <h2>Your Groups</h2>
+              {myGroups.length > 0 ? (
+                myGroups.map((g) => (
+                  <Card style={{ margin: 20 }}>
+                    <Card.Title>{g.name}</Card.Title>
+                    <Card.Subtitle>{g.description}</Card.Subtitle>
+                    <div>
+                      <Button onClick={() => groupEditSelection(g)}>
+                        Edit Details
+                      </Button>
+                    </div>
+                  </Card>
+                ))
+              ) : (
+                <h1>Loading....</h1>
+              )}
+            </Col>
+          </Row>
+        </div>
+      ) : (
+        <div className='my-groups-inner-container'>
+          <Row>
+            <Col md={6}>
+              <h2>Your Groups</h2>
+              {myGroups.length > 0 ? (
+                myGroups.map((g) => (
+                  <Card style={{ margin: 20 }}>
+                    <Card.Title>{g.name}</Card.Title>
+                    <Card.Subtitle>{g.description}</Card.Subtitle>
+                    <div>
+                      <Button>Edit Details</Button>
+                    </div>
+                  </Card>
+                ))
+              ) : (
+                <h1>Loading....</h1>
+              )}
+            </Col>
+            <Col md={6}>
+              <EditGroups group={selectedGroup} tags={tags} />
+            </Col>
+          </Row>
+        </div>
+      )}
     </Container>
   );
 };
+
+{
+  /* <Container>
+      <div className='my-groups-inner-container'>
+        <Row>
+          <Col>
+            <h2>Your Groups</h2>
+            {myGroups.length > 0 ? (
+              myGroups.map((g) => (
+                <Card style={{ margin: 20 }}>
+                  <Card.Title>{g.name}</Card.Title>
+                  <Card.Subtitle>{g.description}</Card.Subtitle>
+                  <div>
+                    <Link to='/groups/edit'>
+                      <Button onClick={() => groupEditSelection(g)}>
+                        Edit Details
+                      </Button>
+                    </Link>
+                  </div>
+                </Card>
+              ))
+            ) : (
+              <h1>Loading....</h1>
+            )}
+          </Col>
+        </Row>
+      </div>
+    </Container> */
+}

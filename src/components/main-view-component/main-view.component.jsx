@@ -31,8 +31,6 @@ export const MainView = () => {
   const [query, setQuery] = useState('All');
   //Holds results filtered by search
   const [filteredResults, setFilteredResults] = useState([]);
-  //Holds the current group that is being edited
-  const [currentAdminGroup, setCurrentAdminGroup] = useState(null);
 
   const onLogin = (user, token) => {
     setUser(user);
@@ -74,11 +72,6 @@ export const MainView = () => {
       let current = initialGroups.filter((group) => group.tags.includes(arg));
       setFilteredResults(current);
     }
-  };
-
-  //Handles state lifting to recieve which group is being edited
-  const groupEditSelection = (group) => {
-    setCurrentAdminGroup(group);
   };
 
   return (
@@ -184,11 +177,7 @@ export const MainView = () => {
             element={
               <>
                 {user && token ? (
-                  <GroupList
-                    user={user}
-                    groups={initialGroups}
-                    groupEditSelection={groupEditSelection}
-                  />
+                  <GroupList user={user} groups={initialGroups} tags={tag} />
                 ) : (
                   <Navigate to='/login' />
                 )}
@@ -213,18 +202,6 @@ export const MainView = () => {
               <>
                 {user && token ? (
                   <MemberView user={user} />
-                ) : (
-                  <Navigate to='/login' />
-                )}
-              </>
-            }
-          />
-          <Route
-            path='/groups/edit'
-            element={
-              <>
-                {user && token ? (
-                  <EditGroups group={currentAdminGroup} />
                 ) : (
                   <Navigate to='/login' />
                 )}
