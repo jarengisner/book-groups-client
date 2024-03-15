@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faX } from '@fortawesome/free-solid-svg-icons';
 //CSS import
 import '../../index.css';
 
-export const EditGroups = ({ group, tags }) => {
+export const EditGroups = ({ group, tags, closeHandler }) => {
   const [editedName, setEditedName] = useState(group.name);
   const [editedDescription, setEditedDescription] = useState(group.description);
   const [editedTags, setEditedTags] = useState(group.tags);
@@ -26,7 +27,9 @@ export const EditGroups = ({ group, tags }) => {
           <p>{group.description}</p>
         </Col>
         <Col md={1}>
-          <p>X button needed</p>
+          <button className='close-button' onClick={() => closeHandler()}>
+            <FontAwesomeIcon icon={faX} className='x-icon' />
+          </button>
         </Col>
       </Row>
       <Row>

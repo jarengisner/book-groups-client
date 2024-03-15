@@ -6,6 +6,12 @@ body {
   font-family: Poppins, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(72, 71, 71);
+  overflow: hidden;
+}
+
+.App {
+  background-color: rgb(72, 71, 71);
 }
 
 code {
@@ -185,15 +191,52 @@ code {
 }
 
 .group-edit-inner-container {
-  background-color: lightblue;
   margin-top: 3px;
-  border: 1px solid gray;
+  border: 1px solid lightgray;
   border-radius: 15px;
   margin-right: 5px;
+  color: white;
 }
 
 .my-groups-inner-container {
   /* margin-left: 7%;
   margin-right: 7%;
   border-radius: 15px; */
+}
+
+.x-icon {
+  color: white;
+  width: 100%;
+  font-size: x-large;
+  transition: 0.5s ease;
+}
+
+.close-button {
+  background-color: rgb(83, 82, 82);
+  border: none;
+  margin-top: 15%;
+  margin-right: 10%;
+  width: 90%;
+  text-align: center;
+  border-radius: 180px;
+  transition: 0.5s ease;
+}
+.close-button:hover {
+  background-color: rgb(188, 186, 186);
+  border: none;
+  margin-top: 15%;
+  margin-right: 10%;
+  width: 90%;
+  text-align: center;
+  border-radius: 180px;
+}
+
+.close-button:hover .x-icon {
+  color: rgb(248, 58, 58);
+}
+
+.my-group-card {
+  margin: 20px;
+  background-color: rgb(122, 121, 121);
+  color: white;
 }

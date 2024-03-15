@@ -3,6 +3,8 @@ import { Navigation } from '../navigation/navigation.component';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { EditGroups } from './group-editing.component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 //CSS import
 import '../../index.css';
@@ -32,29 +34,33 @@ export const GroupList = ({ user, groups, tags }) => {
     setShowEditingMenu(true);
   };
 
+  const closeHandler = () => {
+    setShowEditingMenu(false);
+  };
+
   return (
     <Container>
       {!showEditingMenu ? (
         <div className='my-groups-inner-container'>
           <Row>
-            <Col>
-              <h2>Your Groups</h2>
-              {myGroups.length > 0 ? (
-                myGroups.map((g) => (
-                  <Card style={{ margin: 20 }}>
+            <h2>Your Groups</h2>
+            {myGroups.length > 0 ? (
+              myGroups.map((g) => (
+                <Col md={6}>
+                  <Card style={{ margin: 20 }} className='my-group-card'>
                     <Card.Title>{g.name}</Card.Title>
                     <Card.Subtitle>{g.description}</Card.Subtitle>
                     <div>
                       <Button onClick={() => groupEditSelection(g)}>
-                        Edit Details
+                        <FontAwesomeIcon icon={faPenToSquare} />
                       </Button>
                     </div>
                   </Card>
-                ))
-              ) : (
-                <h1>Loading....</h1>
-              )}
-            </Col>
+                </Col>
+              ))
+            ) : (
+              <h1>Loading....</h1>
+            )}
           </Row>
         </div>
       ) : (
@@ -64,11 +70,13 @@ export const GroupList = ({ user, groups, tags }) => {
               <h2>Your Groups</h2>
               {myGroups.length > 0 ? (
                 myGroups.map((g) => (
-                  <Card style={{ margin: 20 }}>
+                  <Card style={{ margin: 20 }} className='my-group-card'>
                     <Card.Title>{g.name}</Card.Title>
                     <Card.Subtitle>{g.description}</Card.Subtitle>
                     <div>
-                      <Button>Edit Details</Button>
+                      <Button>
+                        <FontAwesomeIcon icon={faPenToSquare} />
+                      </Button>
                     </div>
                   </Card>
                 ))
@@ -77,7 +85,11 @@ export const GroupList = ({ user, groups, tags }) => {
               )}
             </Col>
             <Col md={6}>
-              <EditGroups group={selectedGroup} tags={tags} />
+              <EditGroups
+                group={selectedGroup}
+                tags={tags}
+                closeHandler={closeHandler}
+              />
             </Col>
           </Row>
         </div>
