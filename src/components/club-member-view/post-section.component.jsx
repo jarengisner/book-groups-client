@@ -86,7 +86,7 @@ export const Posts = ({ user, posts, groupname }) => {
             {currentPosts.length > 0 ? (
               posts.map((post) => (
                 <Row style={{ marginTop: 15, marginBottom: 15 }}>
-                  <Card>
+                  <Card className='group-post-card'>
                     {post.postImg ? <img src={post.postImg} alt='Po' /> : null}
                     <div className='post-content'>
                       <button
@@ -102,7 +102,7 @@ export const Posts = ({ user, posts, groupname }) => {
                 </Row>
               ))
             ) : empty ? (
-              <h1>Group has no posts</h1>
+              <h1 style={{ color: 'white' }}>Group has no posts</h1>
             ) : (
               <div>
                 <ClipLoader color='#36D7B7' size={50} />

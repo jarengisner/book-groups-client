@@ -24,7 +24,7 @@ export const Recommendation = ({ groups }) => {
               className='removeDecoration'
               key={group.name}
             >
-              <Card style={{ margin: 7 }}>
+              <Card style={{ margin: 7 }} className='main-view-card'>
                 <div className='suggestionsWithImg'>
                   <img
                     src={group.groupImg}

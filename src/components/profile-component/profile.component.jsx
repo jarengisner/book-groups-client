@@ -54,7 +54,7 @@ export const Profile = ({ user, onLogout, groupSuggestions }) => {
           <div className='my-group-profile-container'>
             {groups.map((group) => {
               return (
-                <Card>
+                <Card className='profile-side-component-card'>
                   <h3>{group.name}</h3>
                   <p>{group.desc}</p>
                 </Card>

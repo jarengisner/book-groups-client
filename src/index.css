@@ -72,7 +72,8 @@ code {
   font-family: 'Poppins', 'sans-serif';
   font-weight: 700;
   border: none;
-  background-color: white;
+  background-color: transparent;
+  color: white;
 }
 
 .navbar-title {
@@ -123,6 +124,7 @@ code {
   text-decoration: none;
   border-bottom: 2px solid lightgray;
   outline: none;
+  color: white;
 }
 
 .filterButton:active {
@@ -131,7 +133,7 @@ code {
 }
 
 .filterButton:hover {
-  background-color: lightgray;
+  background-color: rgb(122, 121, 121);
   border: none;
 }
 
@@ -166,9 +168,10 @@ code {
 
 .create-group-outer {
   margin-top: 10px;
-  background-color: rgb(242, 242, 242);
+  background-color: rgb(122, 121, 121);
   width: 70%;
   border-radius: 20px;
+  color: white;
 }
 
 .create-group-container-layer {
@@ -237,6 +240,26 @@ code {
 
 .my-group-card {
   margin: 20px;
+  background-color: rgb(122, 121, 121);
+  color: white;
+}
+
+.main-view-card {
+  background-color: rgb(122, 121, 121);
+  color: white;
+}
+
+.preview-member-info-card {
+  background-color: rgb(122, 121, 121);
+  color: white;
+}
+
+.member-card {
+  background-color: rgb(122, 121, 121);
+  color: white;
+}
+
+.group-post-card {
   background-color: rgb(122, 121, 121);
   color: white;
 }

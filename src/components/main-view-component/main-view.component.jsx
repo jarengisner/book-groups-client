@@ -14,6 +14,8 @@ import { Recommendation } from './recommended.component';
 import { CreateGroup } from '../create-group/create-group.component';
 import { EditGroups } from '../group-list-component/group-editing.component';
 
+import '../../index.css';
+
 export const MainView = () => {
   //State to check user and token for security
   const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -120,7 +122,10 @@ export const MainView = () => {
                           className='removeDecoration'
                           key={item.name}
                         >
-                          <Card style={{ margin: 7 }}>
+                          <Card
+                            style={{ margin: 7 }}
+                            className='main-view-card'
+                          >
                             <div className='suggestionsWithImg'>
                               <img
                                 src={item.groupImg}

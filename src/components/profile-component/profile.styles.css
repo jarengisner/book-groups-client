@@ -2,11 +2,13 @@
   border: 1px solid #ddd;
   padding: 10px;
   margin: 10px 0;
+  color: white;
 }
 
 .side-panel {
   height: 100vh; /* 100% of the viewport height */
-  background-color: #f0f0f0; /* Example background color */
+  background-color: rgb(122, 121, 121); /* Example background color */
+  color: white;
 }
 
 .profile-badge-container {
@@ -15,4 +17,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 100px;
+}
+
+.profile-side-component-card {
+  background-color: rgb(122, 121, 121);
+  color: white;
 }

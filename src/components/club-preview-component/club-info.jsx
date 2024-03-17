@@ -45,7 +45,7 @@ export const ClubPreviewInfo = ({ club, user }) => {
 
   return (
     <div>
-      <Card>
+      <Card className='preview-member-info-card'>
         <img src={club.groupImg} className='profilePic' alt='pic'></img>
         <Card.Title>{club.name}</Card.Title>
         <Card.Subtitle>{club.description}</Card.Subtitle>

@@ -36,8 +36,8 @@ export const MemberList = ({ club }) => {
       ) : (
         <>
           {members.map((person) => (
-            <Card key={person.username}>
-              <img src={person.profilePic} alt='profile'></img>
+            <Card key={person.username} className='member-card'>
+              {/* <img src={person.profilePic} alt='profile'></img> */}
               <div>
                 <Card.Title>{person.username}</Card.Title>
               </div>
