@@ -69,7 +69,7 @@ export const Login = ({ onLogin }) => {
               <Form.Group controlId='forPass'>
                 <Form.Label>Password:</Form.Label>
                 <Form.Control
-                  type='text'
+                  type='password'
                   value={password}
                   required
                   onChange={(e) => {
