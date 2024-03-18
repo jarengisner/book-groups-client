@@ -50,9 +50,8 @@ export const Login = ({ onLogin }) => {
   return (
     <Container>
       <Row className='justify-content-center'>
-        <h1>BookWorm</h1>
         <Col md={3}>
-          <Card>
+          <Card className='login-card'>
             <h1>Log In</h1>
             <Form>
               <Form.Group controlId='forUsername'>
