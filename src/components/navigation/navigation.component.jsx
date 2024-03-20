@@ -13,6 +13,7 @@ export const Navigation = () => {
       className='bg-body-tertiary justify-content-between'
       data-bs-theme='dark'
       style={{ height: 80, margin: 0, padding: 0 }}
+      fixed='top'
     >
       <Container fluid>
         <Navbar.Brand as={Link} to='/' style={{ marginLeft: '10px' }}>

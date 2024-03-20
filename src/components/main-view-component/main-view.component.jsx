@@ -79,7 +79,7 @@ export const MainView = () => {
   return (
     <BrowserRouter>
       <Navigation />
-      <Row className='justify-content-md-center'>
+      <Row className='justify-content-md-center' style={{ marginTop: '5%' }}>
         <Routes>
           <Route
             path='/'
@@ -116,32 +116,34 @@ export const MainView = () => {
                       </div>
                     </Col>
                     <Col>
-                      {filteredResults.map((item) => (
-                        <Link
-                          to={`/groups/${item.name}`}
-                          className='removeDecoration'
-                          key={item.name}
-                        >
-                          <Card
-                            style={{ margin: 7 }}
-                            className='main-view-card'
+                      <div className='scroll-div'>
+                        {filteredResults.map((item) => (
+                          <Link
+                            to={`/groups/${item.name}`}
+                            className='removeDecoration'
+                            key={item.name}
                           >
-                            <div className='suggestionsWithImg'>
-                              <img
-                                src={item.groupImg}
-                                alt='group logo'
-                                className='profilePic'
-                              ></img>
-                              <div style={{ width: '60%' }}>
-                                <Card.Title>{item.name}</Card.Title>
-                                <Card.Subtitle>
-                                  {item.description}
-                                </Card.Subtitle>
+                            <Card
+                              style={{ margin: 7 }}
+                              className='main-view-card'
+                            >
+                              <div className='suggestionsWithImg'>
+                                <img
+                                  src={item.groupImg}
+                                  alt='group logo'
+                                  className='profilePic'
+                                ></img>
+                                <div style={{ width: '60%' }}>
+                                  <Card.Title>{item.name}</Card.Title>
+                                  <Card.Subtitle>
+                                    {item.description}
+                                  </Card.Subtitle>
+                                </div>
                               </div>
-                            </div>
-                          </Card>
-                        </Link>
-                      ))}
+                            </Card>
+                          </Link>
+                        ))}
+                      </div>
                     </Col>
                     <Col>
                       <Recommendation groups={initialGroups} />

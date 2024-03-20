@@ -17,10 +17,13 @@ export const GroupPhotoUpload = ({ group }) => {
     try {
       setUploading(true);
       // Make a POST request to the API endpoint for uploading the photo using fetch
-      const response = await fetch(`/groups/${groupname}/picture`, {
-        method: 'PUT',
-        body: formData,
-      });
+      const response = await fetch(
+        `http://localhost:8080/groups/${groupname}/picture`,
+        {
+          method: 'PUT',
+          body: formData,
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
