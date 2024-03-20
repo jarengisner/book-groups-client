@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
-import 'src/components/photo-upload-component/photo-upload.css';
+import './group-photo-upload.css';
 
-export const PhotoUpload = ({ user }) => {
+export const GroupPhotoUpload = ({ group }) => {
   const [uploading, setUploading] = useState(false);
 
-  const username = user.username;
+  const groupname = group.name;
 
   const onDrop = async (acceptedFiles) => {
     if (acceptedFiles.length === 0) return;
@@ -17,7 +17,7 @@ export const PhotoUpload = ({ user }) => {
     try {
       setUploading(true);
       // Make a POST request to the API endpoint for uploading the photo using fetch
-      const response = await fetch(`/users/${username}/picture`, {
+      const response = await fetch(`/groups/${groupname}/picture`, {
         method: 'PUT',
         body: formData,
       });
@@ -36,7 +36,7 @@ export const PhotoUpload = ({ user }) => {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
   return (
-    <div {...getRootProps()} /* style={dropzoneStyles} */ className='dropZone'>
+    <div {...getRootProps()} /* style={dropzoneStyles} */ className='dropZoneG'>
       <input {...getInputProps()} />
       {isDragActive ? (
         <p>Drop the photo here ...</p>
