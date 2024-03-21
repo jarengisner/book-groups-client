@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 
 import './group-photo-upload.css';
 
-export const GroupPhotoUpload = ({ group }) => {
+export const GroupPhotoUpload = ({
+  group,
+  imageUploadHandler,
+  editPhotoHandler,
+}) => {
   const [uploading, setUploading] = useState(false);
 
   const groupname = group.name;
@@ -16,7 +20,6 @@ export const GroupPhotoUpload = ({ group }) => {
 
     try {
       setUploading(true);
-      // Make a POST request to the API endpoint for uploading the photo using fetch
       const response = await fetch(
         `http://localhost:8080/groups/${groupname}/picture`,
         {
@@ -29,8 +32,13 @@ export const GroupPhotoUpload = ({ group }) => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
+      const data = await response.json();
       console.log('Photo uploaded successfully');
+      const newUrl = data.groupImg;
       setUploading(false);
+      console.log(newUrl);
+      imageUploadHandler(newUrl);
+      editPhotoHandler();
     } catch (error) {
       console.error('Error uploading photo:', error);
       setUploading(false);

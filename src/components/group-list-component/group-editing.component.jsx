@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX, faImage } from '@fortawesome/free-solid-svg-icons';
@@ -12,6 +12,7 @@ export const EditGroups = ({ group, tags, closeHandler }) => {
   const [editedDescription, setEditedDescription] = useState(group.description);
   const [editedTags, setEditedTags] = useState(group.tags);
   const [showGroupPhotoUpload, setShowGroupPhotoUpload] = useState(false);
+  const [groupPhoto, setGroupPhoto] = useState(group.groupImg);
 
   const nameEditHandler = () => {};
 
@@ -20,14 +21,22 @@ export const EditGroups = ({ group, tags, closeHandler }) => {
   const tagEditHandler = () => {};
 
   const editPhotoHandler = () => {
-    setShowGroupPhotoUpload(true);
+    if (showGroupPhotoUpload === false) {
+      setShowGroupPhotoUpload(true);
+    } else {
+      setShowGroupPhotoUpload(false);
+    }
+  };
+
+  const imageUploadHandler = (url) => {
+    setGroupPhoto(url);
   };
 
   return (
     <div className='group-edit-inner-container'>
       <Row>
         <Col md={4}>
-          <img src={group.groupImg} alt='group profile' />
+          <img src={groupPhoto} alt='group profile' />
           <button onClick={() => editPhotoHandler()}>
             <FontAwesomeIcon icon={faImage} className='imageIcon' />
           </button>
@@ -44,7 +53,11 @@ export const EditGroups = ({ group, tags, closeHandler }) => {
       </Row>
       <div>
         {showGroupPhotoUpload ? (
-          <GroupPhotoUpload group={group} />
+          <GroupPhotoUpload
+            group={group}
+            editPhotoHandler={editPhotoHandler}
+            imageUploadHandler={imageUploadHandler}
+          />
         ) : (
           <>
             <Row>

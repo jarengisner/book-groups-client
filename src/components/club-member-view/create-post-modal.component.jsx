@@ -10,7 +10,7 @@ export const CreatePost = ({ show, closeHandle, user, groupname }) => {
   const userId = user.username;
 
   const handlePostSubmit = () => {
-    const date = new Date();
+    let date = new Date();
 
     date = moment(date).format('MM/DD/YYYY');
 
