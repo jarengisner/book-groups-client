@@ -327,3 +327,27 @@ code {
   font-size: x-large;
   margin-top: 3%;
 }
+
+.success-check {
+  font-size: xx-large;
+}
+
+.success-div {
+  background-color: rgb(88, 159, 88);
+  width: 10%;
+  border: 1px solid white;
+  border-radius: 20px;
+  margin-bottom: 3%;
+}
+
+.fail-div {
+  background-color: rgb(210, 24, 24);
+  width: 10%;
+  border: 1px solid white;
+  border-radius: 20px;
+  margin-bottom: 3%;
+}
+
+.fail-x {
+  font-size: xx-large;
+}

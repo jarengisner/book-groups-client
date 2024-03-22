@@ -43,7 +43,7 @@ export const GroupList = ({ user, groups, tags }) => {
       {!showEditingMenu ? (
         <div className='my-groups-inner-container'>
           <Row>
-            <h2>Your Groups</h2>
+            <h2 style={{ color: 'white' }}>Your Groups</h2>
             {myGroups.length > 0 ? (
               myGroups.map((g) => (
                 <Col md={6}>

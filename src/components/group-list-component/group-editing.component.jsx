@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Col, Container, Row, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faX, faImage } from '@fortawesome/free-solid-svg-icons';
+import { faX, faImage, faCheck } from '@fortawesome/free-solid-svg-icons';
 //CSS import
 import '../../index.css';
 
@@ -66,18 +66,18 @@ export const EditGroups = ({ group, tags, closeHandler }) => {
   //submits all changes made within the form, except for the group photo
   //Also handles re-routing after completing the changes, to show user direct results.
   const submitChangesHandle = () => {
-    //marks display of the loading icon
-    setCurrentlySending(true);
+    //marks the start of the loading icon
+    //setCurrentlySending(true);
     fetch(`http://localhost:8080/clubs/${group.name}/details`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: {
+      body: JSON.stringify({
         name: editedName,
         description: editedDescription,
         tags: editedTags,
-      },
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -90,7 +90,7 @@ export const EditGroups = ({ group, tags, closeHandler }) => {
       })
       .catch((err) => {
         console.log('error in updating the users group' + err);
-        setCurrentlySending(false);
+        //setCurrentlySending(false);
         setSuccess(false);
       });
   };
@@ -242,18 +242,22 @@ export const EditGroups = ({ group, tags, closeHandler }) => {
       ) : success === true ? (
         // Success message and navigation
         <>
-          <h1>Success</h1>
-          {setTimeout(
-            () => (
-              <Navigate to='/mygroups' />
-            ),
-            2000
-          )}{' '}
+          <h3 style={{ marginTop: '5%' }}>Success</h3>
+          <div className='d-flex justify-content-center'>
+            <div className='success-div'>
+              <FontAwesomeIcon icon={faCheck} className='success-check' />
+            </div>
+          </div>
         </>
       ) : (
         // Failure message
         <>
-          <h1>Failed</h1>
+          <h3 style={{ marginTop: '5%' }}>Failed, try again later...</h3>
+          <div className='d-flex justify-content-center'>
+            <div className='fail-div'>
+              <FontAwesomeIcon icon={faX} className='fail-x' />
+            </div>
+          </div>
           {setTimeout(() => setSuccess(null), 1000)}{' '}
         </>
       )}
