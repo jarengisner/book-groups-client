@@ -67,7 +67,7 @@ export const GroupList = ({ user, groups, tags }) => {
         <div className='my-groups-inner-container'>
           <Row>
             <Col md={6}>
-              <h2>Your Groups</h2>
+              <h2 style={{ color: 'white' }}>Your Groups</h2>
               {myGroups.length > 0 ? (
                 myGroups.map((g) => (
                   <Card style={{ margin: 20 }} className='my-group-card'>
@@ -97,32 +97,3 @@ export const GroupList = ({ user, groups, tags }) => {
     </Container>
   );
 };
-
-{
-  /* <Container>
-      <div className='my-groups-inner-container'>
-        <Row>
-          <Col>
-            <h2>Your Groups</h2>
-            {myGroups.length > 0 ? (
-              myGroups.map((g) => (
-                <Card style={{ margin: 20 }}>
-                  <Card.Title>{g.name}</Card.Title>
-                  <Card.Subtitle>{g.description}</Card.Subtitle>
-                  <div>
-                    <Link to='/groups/edit'>
-                      <Button onClick={() => groupEditSelection(g)}>
-                        Edit Details
-                      </Button>
-                    </Link>
-                  </div>
-                </Card>
-              ))
-            ) : (
-              <h1>Loading....</h1>
-            )}
-          </Col>
-        </Row>
-      </div>
-    </Container> */
-}
