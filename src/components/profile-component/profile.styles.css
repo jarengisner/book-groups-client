@@ -7,7 +7,7 @@
 
 .side-panel {
   height: 100vh; /* 100% of the viewport height */
-  background-color: rgb(122, 121, 121); /* Example background color */
+  background-color: rgb(72, 71, 71); /* Example background color */
   color: white;
 }
 
@@ -36,4 +36,62 @@
   font-size: x-large;
   margin-top: 4%;
   margin-bottom: 2%;
+}
+
+.username-input {
+  width: 75%;
+  height: auto;
+  border: none;
+  border-radius: 5px;
+}
+
+.bio-input {
+  width: 75%;
+  height: 200px;
+  border: none;
+  border-radius: 5px;
+}
+
+.bio-input,
+.username-input {
+  margin-top: 2%;
+}
+
+.edit-profile-bio-title,
+.edit-profile-username-title {
+  margin-top: 5%;
+}
+
+.profile-edit-submit-button {
+  background-color: rgb(122, 121, 121);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 20%;
+  height: 40px;
+}
+
+.submit-div {
+  margin-top: 3%;
+}
+
+.profile-pic-div {
+  margin-right: 32.5%;
+}
+.name-bio-div {
+  justify-content: center;
+}
+
+.title-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.edit-title {
+  text-align: center;
+  /* flex: 1; */
+}
+
+.edit-close-button {
+  width: 10%;
 }

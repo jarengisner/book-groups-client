@@ -40,8 +40,15 @@ export const Profile = ({ user, onLogout, groupSuggestions }) => {
         <Col md={8}>
           {/* First Component */}
           <div className='content-box'>
-            <h2>{user.username}</h2>
-            <p>{user.bio}</p>
+            <div className='d-flex justify-content-space-between'>
+              <div className='profile-pic-div'>
+                <img src={user.profilePic} alt='prof'></img>
+              </div>
+              <div className='name-bio-div'>
+                <h2>{user.username}</h2>
+                <p>{user.bio}</p>
+              </div>
+            </div>
             <div className='profile-badge-container'>
               <button className='edit-button' onClick={() => showMenu()}>
                 <FontAwesomeIcon
