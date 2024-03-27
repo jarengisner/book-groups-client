@@ -13,6 +13,8 @@ export const Profile = ({ user, onLogout, groupSuggestions }) => {
 
   const [groups, setGroups] = useState([]);
   const [showEdit, setShowEdit] = useState(false);
+  const [currentBio, setCurrentBio] = useState(user.bio);
+  const [currentUserPic, setCurrentUserPic] = useState(user.profilePic);
 
   //useEffect is good, but it will filter for groups that you are a member of, make sure that it will provide all the details, etc.
   useEffect(() => {
@@ -33,6 +35,14 @@ export const Profile = ({ user, onLogout, groupSuggestions }) => {
     }
   };
 
+  const refreshUserBioAfterChanges = (bio) => {
+    setCurrentBio(bio);
+  };
+
+  const refreshUserPicAfterChanges = (source) => {
+    setCurrentUserPic(source);
+  };
+
   return (
     <Container fluid>
       <Row>
@@ -42,11 +52,11 @@ export const Profile = ({ user, onLogout, groupSuggestions }) => {
           <div className='content-box'>
             <div className='d-flex justify-content-space-between'>
               <div className='profile-pic-div'>
-                <img src={user.profilePic} alt='prof'></img>
+                <img src={currentUserPic} alt='prof'></img>
               </div>
               <div className='name-bio-div'>
                 <h2>{user.username}</h2>
-                <p>{user.bio}</p>
+                <p>{currentBio}</p>
               </div>
             </div>
             <div className='profile-badge-container'>
@@ -72,7 +82,11 @@ export const Profile = ({ user, onLogout, groupSuggestions }) => {
         {/* Right Side Panel */}
         <Col md={4} className='side-panel'>
           {showEdit ? (
-            <EditProfile user={user} />
+            <EditProfile
+              user={user}
+              refreshUserBioAfterChanges={refreshUserBioAfterChanges}
+              refreshUserPicAfterChanges={refreshUserPicAfterChanges}
+            />
           ) : (
             <>
               <div className='content-box'>

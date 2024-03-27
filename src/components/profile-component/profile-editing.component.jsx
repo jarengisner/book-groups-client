@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX, faImage, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { ProfilePhotoUpload } from './profile-photo-upload';
 
 //styling
 import '../profile-component/profile.styles.css';
 
-export const EditProfile = ({ user }) => {
-  const [newUsername, setNewUsername] = useState('');
+export const EditProfile = ({
+  user,
+  refreshUserBioAfterChanges,
+  refreshUserPicAfterChanges,
+}) => {
   const [newBio, setNewBio] = useState('');
-
-  const usernameChangeHandle = (e) => {
-    setNewUsername(e.target.value);
-  };
+  const [newPic, setNewPic] = useState('');
 
   const bioChangeHandle = (e) => {
     setNewBio(e.target.value);
@@ -24,10 +25,21 @@ export const EditProfile = ({ user }) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        username: newUsername,
-        bio: newBio,
+        newBio: newBio,
       }),
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        refreshUserBioAfterChanges(newBio);
+        refreshUserPicAfterChanges(newPic);
+      });
+  };
+
+  //refreshUserAfterChanges(newBio, newPic);
+
+  const handlePhotoRefresh = (picUrl) => {
+    setNewPic(picUrl);
   };
 
   return (
@@ -38,13 +50,8 @@ export const EditProfile = ({ user }) => {
           <FontAwesomeIcon icon={faX} />
         </button>
       </div>
-      <h2 className='edit-profile-username-title'>Enter new username...</h2>
-      <input
-        placeholder={user.username}
-        className='username-input'
-        value={newUsername}
-        onChange={usernameChangeHandle}
-      ></input>
+      <h2 className='edit-profile-bio-title'>Change profile picture</h2>
+      <ProfilePhotoUpload user={user} handlePhotoRefresh={handlePhotoRefresh} />
       <h2 className='edit-profile-bio-title'>Enter a new bio...</h2>
       <textarea
         placeholder={user.bio}
