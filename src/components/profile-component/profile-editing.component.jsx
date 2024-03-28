@@ -10,6 +10,7 @@ export const EditProfile = ({
   user,
   refreshUserBioAfterChanges,
   refreshUserPicAfterChanges,
+  syncUser,
 }) => {
   const [newBio, setNewBio] = useState('');
   const [newPic, setNewPic] = useState('');
@@ -33,12 +34,14 @@ export const EditProfile = ({
         console.log(data);
         refreshUserBioAfterChanges(newBio);
         refreshUserPicAfterChanges(newPic);
+        syncUser(data);
       });
   };
 
   //refreshUserAfterChanges(newBio, newPic);
 
   const handlePhotoRefresh = (picUrl) => {
+    console.log(picUrl);
     setNewPic(picUrl);
   };
 

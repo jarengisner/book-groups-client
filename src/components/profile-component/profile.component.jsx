@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { EditProfile } from './profile-editing.component';
 
-export const Profile = ({ user, onLogout, groupSuggestions }) => {
+export const Profile = ({ user, onLogout, groupSuggestions, syncUser }) => {
   //make algorithm to sort out groups that the user is involved in
 
   const [groups, setGroups] = useState([]);
@@ -40,6 +40,7 @@ export const Profile = ({ user, onLogout, groupSuggestions }) => {
   };
 
   const refreshUserPicAfterChanges = (source) => {
+    console.log(source);
     setCurrentUserPic(source);
   };
 
@@ -86,6 +87,7 @@ export const Profile = ({ user, onLogout, groupSuggestions }) => {
               user={user}
               refreshUserBioAfterChanges={refreshUserBioAfterChanges}
               refreshUserPicAfterChanges={refreshUserPicAfterChanges}
+              syncUser={syncUser}
             />
           ) : (
             <>

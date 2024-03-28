@@ -76,6 +76,11 @@ export const MainView = () => {
     }
   };
 
+  const syncUser = (user) => {
+    setUser(user);
+    localStorage.setItem('user', JSON.stringify(user));
+  };
+
   return (
     <BrowserRouter>
       <Navigation />
@@ -166,6 +171,7 @@ export const MainView = () => {
                       localStorage.clear();
                     }}
                     groupSuggestions={initialGroups}
+                    syncUser={syncUser}
                   />
                 ) : (
                   <Navigate to='/login' />
