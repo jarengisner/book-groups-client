@@ -141,6 +141,7 @@ export const EditGroups = ({ group, tags, closeHandler }) => {
                   placeholder={group.name}
                   value={editedName}
                   onChange={nameEditHandler}
+                  className='name-input-changer'
                 ></input>
               </Row>
               <Row className='group-edit-input'>
@@ -151,6 +152,7 @@ export const EditGroups = ({ group, tags, closeHandler }) => {
                   style={{ marginBottom: '5%' }}
                   value={editedDescription}
                   onChange={descriptionEditHandler}
+                  className='description-input-changer'
                 ></textarea>
               </Row>
               <Row>
@@ -234,7 +236,12 @@ export const EditGroups = ({ group, tags, closeHandler }) => {
                 </div>
               </Row>
               <Row>
-                <Button onClick={submitChangesHandle}>Submit Changes</Button>
+                <button
+                  onClick={submitChangesHandle}
+                  className='group-edit-submit-button'
+                >
+                  Submit Changes
+                </button>
               </Row>
             </div>
           )}

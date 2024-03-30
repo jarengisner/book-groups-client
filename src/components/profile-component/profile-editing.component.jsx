@@ -11,6 +11,7 @@ export const EditProfile = ({
   refreshUserBioAfterChanges,
   refreshUserPicAfterChanges,
   syncUser,
+  showMenu,
 }) => {
   const [newBio, setNewBio] = useState('');
   const [newPic, setNewPic] = useState('');
@@ -31,7 +32,6 @@ export const EditProfile = ({
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         refreshUserBioAfterChanges(newBio);
         refreshUserPicAfterChanges(newPic);
         syncUser(data);
@@ -49,7 +49,7 @@ export const EditProfile = ({
     <div>
       <div className='title-bar'>
         <h1 className='edit-title'>Edit profile</h1>
-        <button className='edit-close-button'>
+        <button className='edit-close-button' onClick={() => showMenu()}>
           <FontAwesomeIcon icon={faX} />
         </button>
       </div>

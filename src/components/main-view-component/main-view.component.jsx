@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
-import { Card, Col, Row } from 'react-bootstrap';
+import { Card, Col, Row, Dropdown } from 'react-bootstrap';
 import { Profile } from '../profile-component/profile.component';
 
 import { Login } from '../login/login.component';
@@ -96,7 +96,7 @@ export const MainView = () => {
                   <h1>Loading.....</h1>
                 ) : (
                   <>
-                    <Col style={{ marginTop: 80 }}>
+                    <Col style={{ marginTop: 80 }} className='hide-left-side'>
                       <div className='left-side-filter'>
                         <button
                           key='allkey'
@@ -120,7 +120,29 @@ export const MainView = () => {
                         )}
                       </div>
                     </Col>
-                    <Col>
+                    <Col className='centerpiece-component'>
+                      <div className='dropdown-menu-mobile'>
+                        <Dropdown>
+                          <Dropdown.Toggle variant='light' id='dropdown-basic'>
+                            Filter
+                          </Dropdown.Toggle>
+
+                          <Dropdown.Menu>
+                            {tag.length > 0 ? (
+                              tag.map((t) => (
+                                <Dropdown.Item
+                                  key={t}
+                                  onClick={() => queryHandler(t)}
+                                >
+                                  {t}
+                                </Dropdown.Item>
+                              ))
+                            ) : (
+                              <h1>Loading.....</h1>
+                            )}
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </div>
                       <div className='scroll-div'>
                         {filteredResults.map((item) => (
                           <Link
@@ -150,7 +172,7 @@ export const MainView = () => {
                         ))}
                       </div>
                     </Col>
-                    <Col>
+                    <Col className='recommended-right-side'>
                       <Recommendation groups={initialGroups} />
                     </Col>
                   </>

@@ -51,11 +51,14 @@ export const Profile = ({ user, onLogout, groupSuggestions, syncUser }) => {
         <Col md={8}>
           {/* First Component */}
           <div className='content-box'>
-            <div className='d-flex justify-content-space-between'>
-              <div className='profile-pic-div'>
-                <img src={currentUserPic} alt='prof'></img>
-              </div>
+            <div className='d-flex justify-content-center'>
+              {/* <div className='profile-pic-div'></div> */}
               <div className='name-bio-div'>
+                <img
+                  src={currentUserPic}
+                  alt='prof'
+                  className='profile-img'
+                ></img>
                 <h2>{user.username}</h2>
                 <p>{currentBio}</p>
               </div>
@@ -88,6 +91,7 @@ export const Profile = ({ user, onLogout, groupSuggestions, syncUser }) => {
               refreshUserBioAfterChanges={refreshUserBioAfterChanges}
               refreshUserPicAfterChanges={refreshUserPicAfterChanges}
               syncUser={syncUser}
+              showMenu={showMenu}
             />
           ) : (
             <>

@@ -69,6 +69,16 @@
   border-radius: 5px;
   width: 20%;
   height: 40px;
+  transition: background-color 0.4s ease;
+}
+
+.profile-edit-submit-button:hover {
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 20%;
+  height: 40px;
 }
 
 .submit-div {
@@ -79,6 +89,9 @@
   margin-right: 32.5%;
 }
 .name-bio-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 
@@ -94,6 +107,21 @@
 
 .edit-close-button {
   width: 10%;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  transition: color 0.3s ease, border 0.3s ease;
+  border-radius: 5px;
+  margin-right: 2%;
+}
+
+.edit-close-button:hover {
+  width: 10%;
+  background-color: transparent;
+  color: red;
+  border: 1px solid red;
+  border-radius: 5px;
+  margin-right: 2%;
 }
 
 .dropZoneG {
@@ -105,4 +133,11 @@
   margin: 20px auto;
   width: 300px;
   height: 200px;
+}
+
+.profile-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
 }
