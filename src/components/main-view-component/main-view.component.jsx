@@ -48,6 +48,7 @@ export const MainView = () => {
             id: club._id,
             name: club.name,
             description: club.description,
+            posts: club.posts,
             groupImg: club.groupImg,
             members: club.members,
             tags: club.tags,
@@ -151,7 +152,12 @@ export const MainView = () => {
                             key={item.name}
                           >
                             <Card
-                              style={{ margin: 7 }}
+                              style={{
+                                marginTop: 7,
+                                borderBottomLeftRadius: 0,
+                                borderBottomRightRadius: 0,
+                                zIndex: 2,
+                              }}
                               className='main-view-card'
                             >
                               <div className='suggestionsWithImg'>
@@ -168,6 +174,20 @@ export const MainView = () => {
                                 </div>
                               </div>
                             </Card>
+                            <div className='preview-post'>
+                              {item.posts.length > 0 ? (
+                                <>
+                                  <p className='example-post-author'>
+                                    {item.posts[0].postUser}
+                                  </p>
+                                  <p className='example-post'>
+                                    {item.posts[0].postBody}
+                                  </p>
+                                </>
+                              ) : (
+                                <p>No posts to preview</p>
+                              )}
+                            </div>
                           </Link>
                         ))}
                       </div>
