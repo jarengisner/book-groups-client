@@ -145,6 +145,11 @@ export const MainView = () => {
                         </Dropdown>
                       </div>
                       <div className='scroll-div'>
+                        <h1 className='white-text'>Explore</h1>
+                        <p className='white-text'>
+                          See groups, and a preview of what they're talking
+                          about
+                        </p>
                         {filteredResults.map((item) => (
                           <Link
                             to={`/groups/${item.name}`}
@@ -180,6 +185,9 @@ export const MainView = () => {
                                   <p className='example-post-author'>
                                     {item.posts[0].postUser}
                                   </p>
+                                  <p className='example-post-date'>
+                                    {JSON.parse(item.posts[0].date)}
+                                  </p>
                                   <p className='example-post'>
                                     {item.posts[0].postBody}
                                   </p>
@@ -193,6 +201,7 @@ export const MainView = () => {
                       </div>
                     </Col>
                     <Col className='recommended-right-side'>
+                      <h1 className='white-text'>Recommended Groups</h1>
                       <Recommendation groups={initialGroups} />
                     </Col>
                   </>

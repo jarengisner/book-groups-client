@@ -141,3 +141,52 @@
   object-fit: cover;
   border-radius: 50%;
 }
+
+.icon-styling {
+  font-size: xx-large;
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
+.icon-label {
+  font-size: small;
+}
+
+.award-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.my-post-date {
+  text-align: left;
+  margin-left: 1%;
+  margin-top: 1%;
+}
+
+.my-post-body {
+  text-align: left;
+  margin-left: 1%;
+}
+
+.my-posts-card {
+  background-color: rgb(72, 71, 71);
+  color: white;
+}
+
+.post-content-container {
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  margin-top: 1%;
+}
+
+.my-posts-group-title {
+  text-align: left;
+  font-size: x-large;
+}
+
+/* .individual-award-box{
+  margin
+}
+ */

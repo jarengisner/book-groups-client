@@ -17,7 +17,7 @@ export const Navigation = () => {
     >
       <Container fluid>
         <Navbar.Brand as={Link} to='/' style={{ marginLeft: '10px' }}>
-          <span className='navbar-title'>groups</span>
+          <span className='navbar-title'>GC</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
