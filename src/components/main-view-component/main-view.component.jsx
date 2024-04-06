@@ -14,6 +14,9 @@ import { Recommendation } from './recommended.component';
 import { CreateGroup } from '../create-group/create-group.component';
 import { EditGroups } from '../group-list-component/group-editing.component';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+
 import '../../index.css';
 
 export const MainView = () => {
@@ -145,40 +148,42 @@ export const MainView = () => {
                         </Dropdown>
                       </div>
                       <div className='scroll-div'>
-                        <h1 className='white-text'>Explore</h1>
+                        <h1 className='white-text-header'>Explore</h1>
                         <p className='white-text'>
                           See groups, and a preview of what they're talking
                           about
                         </p>
                         {filteredResults.map((item) => (
-                          <Link
-                            to={`/groups/${item.name}`}
-                            className='removeDecoration'
-                            key={item.name}
-                          >
-                            <Card
-                              style={{
-                                marginTop: 7,
-                                borderBottomLeftRadius: 0,
-                                borderBottomRightRadius: 0,
-                                zIndex: 2,
-                              }}
-                              className='main-view-card'
+                          <div>
+                            <Link
+                              to={`/groups/${item.name}`}
+                              className='removeDecoration'
+                              key={item.name}
                             >
-                              <div className='suggestionsWithImg'>
-                                <img
-                                  src={item.groupImg}
-                                  alt='group logo'
-                                  className='profilePic'
-                                ></img>
-                                <div style={{ width: '60%' }}>
-                                  <Card.Title>{item.name}</Card.Title>
-                                  <Card.Subtitle>
-                                    {item.description}
-                                  </Card.Subtitle>
+                              <Card
+                                style={{
+                                  marginTop: 7,
+                                  borderBottomLeftRadius: 0,
+                                  borderBottomRightRadius: 0,
+                                  zIndex: 2,
+                                }}
+                                className='main-view-card'
+                              >
+                                <div className='suggestionsWithImg'>
+                                  <img
+                                    src={item.groupImg}
+                                    alt='group logo'
+                                    className='profilePic'
+                                  ></img>
+                                  <div style={{ width: '60%' }}>
+                                    <Card.Title>{item.name}</Card.Title>
+                                    <Card.Subtitle>
+                                      {item.description}
+                                    </Card.Subtitle>
+                                  </div>
                                 </div>
-                              </div>
-                            </Card>
+                              </Card>
+                            </Link>
                             <div className='preview-post'>
                               {item.posts.length > 0 ? (
                                 <>
@@ -191,17 +196,29 @@ export const MainView = () => {
                                   <p className='example-post'>
                                     {item.posts[0].postBody}
                                   </p>
+                                  <div>
+                                    <button className='like-button'>
+                                      <FontAwesomeIcon
+                                        icon={faHeart}
+                                        className='heart-button'
+                                      />
+                                    </button>
+                                    {item.posts[0].likes ? (
+                                      <p>{item.posts[0].likes}</p>
+                                    ) : null}
+                                  </div>
                                 </>
                               ) : (
                                 <p>No posts to preview</p>
                               )}
                             </div>
-                          </Link>
+                            {/* link was here */}
+                          </div>
                         ))}
                       </div>
                     </Col>
                     <Col className='recommended-right-side'>
-                      <h1 className='white-text'>Recommended Groups</h1>
+                      <h1 className='white-text-header'>Recommended Groups</h1>
                       <Recommendation groups={initialGroups} />
                     </Col>
                   </>

@@ -46,11 +46,18 @@ export const ClubPreviewInfo = ({ club, user }) => {
   return (
     <div>
       <Card className='preview-member-info-card'>
-        <img src={club.groupImg} className='profilePic' alt='pic'></img>
-        <Card.Title>{club.name}</Card.Title>
-        <Card.Subtitle>{club.description}</Card.Subtitle>
+        <div className='preview-info-inner-container'>
+          <div className='preview-img-container'>
+            <img src={club.groupImg} className='club-info-pic' alt='pic'></img>
+          </div>
+          <div className='preview-name-desc'>
+            <Card.Title className='preview-text-inner'>{club.name}</Card.Title>
+            <Card.Subtitle className='preview-text-inner'>
+              {club.description}
+            </Card.Subtitle>
+          </div>
+        </div>
         <div>
-          <p>This will contain a carousel of the books from the club</p>
           <>
             {!club.members.some((member) => member.username === userId) ? (
               <Button
@@ -62,8 +69,8 @@ export const ClubPreviewInfo = ({ club, user }) => {
               </Button>
             ) : (
               <Button
-                variant='outline-danger'
-                style={{ width: '33%' }}
+                variant='danger'
+                style={{ width: '33%', marginBottom: '1%' }}
                 onClick={leaveHandle}
               >
                 Leave Group

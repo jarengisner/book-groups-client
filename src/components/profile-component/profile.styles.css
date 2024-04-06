@@ -1,7 +1,18 @@
 .content-box {
   border: 1px solid #ddd;
   padding: 10px;
-  margin: 10px 0;
+  /* margin: 10px 0; */
+  margin-bottom: 10px;
+  margin-left: 1%;
+  color: white;
+}
+
+.content-box-right {
+  border: 1px solid #ddd;
+  padding: 10px;
+  /* margin: 10px 0; */
+  margin-bottom: 10px;
+  margin-right: 2%;
   color: white;
 }
 
@@ -22,6 +33,7 @@
 .profile-side-component-card {
   background-color: rgb(122, 121, 121);
   color: white;
+  margin-right: 2%;
 }
 
 .edit-button {
@@ -170,7 +182,8 @@
 }
 
 .my-posts-card {
-  background-color: rgb(72, 71, 71);
+  /* background-color: rgb(72, 71, 71); */
+  background-color: black;
   color: white;
 }
 
@@ -184,6 +197,14 @@
 .my-posts-group-title {
   text-align: left;
   font-size: x-large;
+  margin-left: 1%;
+  margin-top: 1%;
+}
+
+.post-card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 /* .individual-award-box{

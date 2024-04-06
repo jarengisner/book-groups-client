@@ -53,8 +53,8 @@ code {
 } */
 
 .profilePic {
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   object-fit: cover;
   border-radius: 50%;
   margin-right: 20px;
@@ -233,10 +233,24 @@ code {
   margin: 20px;
   background-color: rgb(122, 121, 121);
   color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.my-group-title-caption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
 
 .main-view-card {
-  background-color: rgb(122, 121, 121);
+  /* background-color: rgb(122, 121, 121); */
+  background-color: black;
+  /* color: white; */
   color: white;
   margin-bottom: 0;
   /* border: 1px solid rgb(66, 66, 66); */
@@ -245,6 +259,7 @@ code {
 .preview-member-info-card {
   background-color: rgb(122, 121, 121);
   color: white;
+  margin-left: 1%;
 }
 
 .member-card {
@@ -408,7 +423,9 @@ code {
 }
 
 .preview-post {
-  background-color: white;
+  /* background-color: white; */
+  background-color: lightgray;
+  color: black;
   border: 1px solid rgb(66, 66, 66);
   margin-top: 0;
   border-top-left-radius: none;
@@ -438,4 +455,55 @@ code {
 
 .white-text {
   color: white;
+}
+
+.white-text-header {
+  color: white;
+  font-size: x-large;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.like-button {
+  background-color: rgb(72, 71, 71);
+  border: none;
+  border-radius: 180%;
+  text-align: center;
+  margin-bottom: 1%;
+}
+
+.heart-button {
+  color: white;
+  margin-top: 5px;
+}
+
+.club-info-pic {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.preview-info-inner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-text-inner {
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.group-edit-open-button,
+.delete-group-button {
+  background-color: transparent;
+  border: none;
+}
+
+.group-edit-open-icon,
+.delete-group-icon {
+  color: lightblue;
+  font-size: large;
 }

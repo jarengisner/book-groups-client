@@ -17,9 +17,10 @@ export const CreatePost = ({ show, closeHandle, user, groupname }) => {
     const postData = {
       post: {
         postUser: userId,
-        imgUrl: postImgUrl,
         postBody: postBody,
         date: JSON.stringify(date),
+        likes: 0,
+        id: `${userId} + ${Math.random(1, 1000)}`,
       },
     };
 
@@ -47,13 +48,6 @@ export const CreatePost = ({ show, closeHandle, user, groupname }) => {
         <Form>
           <Form.Group controlId='postText'>
             {/* change this to a drag and drop area */}
-            <Form.Label>Image URL</Form.Label>
-            <Form.Control
-              as='textarea'
-              rows={1}
-              value={postImgUrl}
-              onChange={(e) => setPostImgUrl(e.target.value)}
-            />
             <Form.Label>Post Text</Form.Label>
             <Form.Control
               as='textarea'

@@ -75,6 +75,7 @@ export const Profile = ({ user, onLogout, groupSuggestions, syncUser }) => {
                 <p>{currentBio}</p>
               </div>
             </div>
+            {/* need to make following section it's own individual component */}
             <div className='award-container'>
               {groups.length > 0 ? (
                 <div className='individual-award-box'>
@@ -108,9 +109,11 @@ export const Profile = ({ user, onLogout, groupSuggestions, syncUser }) => {
             <div>
               {userPosts.map((postObj) => (
                 <Card className='my-posts-card'>
-                  <Card.Title className='my-posts-group-title'>
-                    {postObj.name}
-                  </Card.Title>
+                  <div className='post-card-header'>
+                    <Card.Title className='my-posts-group-title'>
+                      {postObj.name}
+                    </Card.Title>
+                  </div>
                   {postObj.posts.map((post) => (
                     <div className='post-content-container'>
                       <p className='my-post-date'>{JSON.parse(post.date)}</p>
@@ -135,7 +138,7 @@ export const Profile = ({ user, onLogout, groupSuggestions, syncUser }) => {
             />
           ) : (
             <>
-              <div className='content-box'>
+              <div className='content-box-right'>
                 <h2>My groups</h2>
               </div>
               <div className='my-group-profile-container'>

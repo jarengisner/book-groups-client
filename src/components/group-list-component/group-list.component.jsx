@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { EditGroups } from './group-editing.component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 //CSS import
 import '../../index.css';
@@ -48,11 +48,25 @@ export const GroupList = ({ user, groups, tags }) => {
               myGroups.map((g) => (
                 <Col md={6}>
                   <Card style={{ margin: 20 }} className='my-group-card'>
-                    <Card.Title>{g.name}</Card.Title>
-                    <Card.Subtitle>{g.description}</Card.Subtitle>
+                    <div className='my-group-title-caption'>
+                      <Card.Title>{g.name}</Card.Title>
+                      <Card.Subtitle>{g.description}</Card.Subtitle>
+                    </div>
                     <div>
-                      <Button onClick={() => groupEditSelection(g)}>
-                        <FontAwesomeIcon icon={faPenToSquare} />
+                      <Button
+                        onClick={() => groupEditSelection(g)}
+                        className='group-edit-open-button'
+                      >
+                        <FontAwesomeIcon
+                          icon={faPenToSquare}
+                          className='group-edit-open-icon'
+                        />
+                      </Button>
+                      <Button className='delete-group-button' variant='danger'>
+                        <FontAwesomeIcon
+                          icon={faTrash}
+                          className='delete-group-icon'
+                        />
                       </Button>
                     </div>
                   </Card>
@@ -71,11 +85,25 @@ export const GroupList = ({ user, groups, tags }) => {
               {myGroups.length > 0 ? (
                 myGroups.map((g) => (
                   <Card style={{ margin: 20 }} className='my-group-card'>
-                    <Card.Title>{g.name}</Card.Title>
-                    <Card.Subtitle>{g.description}</Card.Subtitle>
+                    <div className='my-group-title-caption'>
+                      <Card.Title>{g.name}</Card.Title>
+                      <Card.Subtitle>{g.description}</Card.Subtitle>
+                    </div>
                     <div>
-                      <Button>
-                        <FontAwesomeIcon icon={faPenToSquare} />
+                      <Button
+                        onClick={() => groupEditSelection(g)}
+                        className='group-edit-open-button'
+                      >
+                        <FontAwesomeIcon
+                          icon={faPenToSquare}
+                          className='group-edit-open-icon'
+                        />
+                      </Button>
+                      <Button className='delete-group-button' variant='danger'>
+                        <FontAwesomeIcon
+                          icon={faTrash}
+                          className='delete-group-icon'
+                        />
                       </Button>
                     </div>
                   </Card>
