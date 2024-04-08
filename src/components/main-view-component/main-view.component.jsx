@@ -36,6 +36,8 @@ export const MainView = () => {
   const [query, setQuery] = useState('All');
   //Holds results filtered by search
   const [filteredResults, setFilteredResults] = useState([]);
+  //controls a like to refresh page instantly upon liking
+  const [currentLikes, setCurrentLikes] = useState([]);
 
   const onLogin = (user, token) => {
     setUser(user);
@@ -67,7 +69,7 @@ export const MainView = () => {
         setFilteredResults(clubData);
         console.log('main:', clubData);
       });
-  }, []);
+  }, [currentLikes]);
 
   //Handles all filter results
   const queryHandler = (arg) => {
@@ -83,6 +85,12 @@ export const MainView = () => {
   const syncUser = (user) => {
     setUser(user);
     localStorage.setItem('user', JSON.stringify(user));
+  };
+
+  const likeHandler = (id) => {
+    //http request
+
+    setCurrentLikes((previousLikes) => [...previousLikes, id]);
   };
 
   return (

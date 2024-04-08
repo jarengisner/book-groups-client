@@ -13,6 +13,8 @@ export const CreatePost = ({ show, closeHandle, user, groupname }) => {
     let date = new Date();
 
     date = moment(date).format('MM/DD/YYYY');
+    const randomNum = Math.random();
+    const scaledRandomNum = Math.floor(randomNum * 1000);
 
     const postData = {
       post: {
@@ -20,7 +22,8 @@ export const CreatePost = ({ show, closeHandle, user, groupname }) => {
         postBody: postBody,
         date: JSON.stringify(date),
         likes: 0,
-        id: `${userId} + ${Math.random(1, 1000)}`,
+        likedBy: [],
+        id: `${userId}${date}${scaledRandomNum}`,
       },
     };
 
