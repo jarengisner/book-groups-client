@@ -23,7 +23,7 @@ export const CreatePost = ({ show, closeHandle, user, groupname }) => {
         date: JSON.stringify(date),
         likes: 0,
         likedBy: [],
-        id: `${userId}${date}${scaledRandomNum}`,
+        id: `${userId}${scaledRandomNum}`,
       },
     };
 
