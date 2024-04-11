@@ -507,3 +507,7 @@ code {
   color: lightblue;
   font-size: large;
 }
+
+.like-button-already-liked {
+  color: rgb(227, 169, 178);
+}

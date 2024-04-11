@@ -69,7 +69,7 @@ export const MainView = () => {
         setFilteredResults(clubData);
         console.log('main:', clubData);
       });
-  }, [currentLikes]);
+  }, []);
 
   //Handles all filter results
   const queryHandler = (arg) => {
@@ -87,20 +87,32 @@ export const MainView = () => {
     localStorage.setItem('user', JSON.stringify(user));
   };
 
-  const likeHandler = (id, groupname, postIndex) => {
+  const likeHandler = (id, groupname, postIndex, postId) => {
     const likeData = {
       userId: id,
       groupname: groupname,
       postIndex: postIndex,
     };
 
-    fetch('http://localhost:8080/posts/like', {});
-    if (!currentLikes.includes(id)) {
-      setCurrentLikes((previousLikes) => [...previousLikes, id]);
-    } else {
-      let filteredLikes = currentLikes.filter((i) => i !== id);
-      setCurrentLikes(filteredLikes);
-    }
+    setCurrentLikes((previousLikes) => [...previousLikes, postId]);
+
+    fetch('http://localhost:8080/posts/like', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(likeData),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+
+    console.log('currentLikes ' + currentLikes);
+  };
+
+  const unlikeHandler = (id, groupname, postIndex) => {
+    //Need to make a handler that will handle un-liking the post
+    let filteredLikes = currentLikes.filter((i) => i !== id);
+    setCurrentLikes(filteredLikes);
   };
 
   return (
@@ -219,12 +231,17 @@ export const MainView = () => {
                                       user.username
                                     ) ||
                                     currentLikes.includes(item.posts[0].id) ? (
-                                      <button className='like-button-already-liked'>
+                                      <button className='like-button'>
                                         <FontAwesomeIcon
                                           icon={faHeart}
-                                          className='heart-button'
+                                          className='heart-button like-button-already-liked'
                                           onClick={() =>
-                                            likeHandler(item.posts[0].id)
+                                            unlikeHandler(
+                                              user.username,
+                                              item.name,
+                                              0,
+                                              item.posts[0].id
+                                            )
                                           }
                                         />
                                       </button>
@@ -234,7 +251,12 @@ export const MainView = () => {
                                           icon={faHeart}
                                           className='heart-button'
                                           onClick={() =>
-                                            likeHandler(item.posts[0].id)
+                                            likeHandler(
+                                              user.username,
+                                              item.name,
+                                              0,
+                                              item.posts[0].id
+                                            )
                                           }
                                         />
                                       </button>
