@@ -87,10 +87,20 @@ export const MainView = () => {
     localStorage.setItem('user', JSON.stringify(user));
   };
 
-  const likeHandler = (id) => {
-    //http request
+  const likeHandler = (id, groupname, postIndex) => {
+    const likeData = {
+      userId: id,
+      groupname: groupname,
+      postIndex: postIndex,
+    };
 
-    setCurrentLikes((previousLikes) => [...previousLikes, id]);
+    fetch('http://localhost:8080/posts/like', {});
+    if (!currentLikes.includes(id)) {
+      setCurrentLikes((previousLikes) => [...previousLikes, id]);
+    } else {
+      let filteredLikes = currentLikes.filter((i) => i !== id);
+      setCurrentLikes(filteredLikes);
+    }
   };
 
   return (
@@ -205,12 +215,30 @@ export const MainView = () => {
                                     {item.posts[0].postBody}
                                   </p>
                                   <div>
-                                    <button className='like-button'>
-                                      <FontAwesomeIcon
-                                        icon={faHeart}
-                                        className='heart-button'
-                                      />
-                                    </button>
+                                    {item.posts[0].likedBy.includes(
+                                      user.username
+                                    ) ||
+                                    currentLikes.includes(item.posts[0].id) ? (
+                                      <button className='like-button-already-liked'>
+                                        <FontAwesomeIcon
+                                          icon={faHeart}
+                                          className='heart-button'
+                                          onClick={() =>
+                                            likeHandler(item.posts[0].id)
+                                          }
+                                        />
+                                      </button>
+                                    ) : (
+                                      <button className='like-button'>
+                                        <FontAwesomeIcon
+                                          icon={faHeart}
+                                          className='heart-button'
+                                          onClick={() =>
+                                            likeHandler(item.posts[0].id)
+                                          }
+                                        />
+                                      </button>
+                                    )}
                                     {item.posts[0].likes ? (
                                       <p>{item.posts[0].likes}</p>
                                     ) : null}
