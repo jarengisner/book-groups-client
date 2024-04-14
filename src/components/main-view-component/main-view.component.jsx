@@ -115,6 +115,11 @@ export const MainView = () => {
     setCurrentLikes(filteredLikes);
   };
 
+  const refreshGroupsAfterDelete = (name) => {
+    let newGroups = initialGroups.filter((group) => group.name !== name);
+    setInitialGroups(newGroups);
+  };
+
   return (
     <BrowserRouter>
       <Navigation />
@@ -316,7 +321,12 @@ export const MainView = () => {
             element={
               <>
                 {user && token ? (
-                  <GroupList user={user} groups={initialGroups} tags={tag} />
+                  <GroupList
+                    user={user}
+                    groups={initialGroups}
+                    tags={tag}
+                    refreshGroupsAfterDelete={refreshGroupsAfterDelete}
+                  />
                 ) : (
                   <Navigate to='/login' />
                 )}

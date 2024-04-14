@@ -388,40 +388,6 @@ code {
   border: none;
 }
 
-/* Hide normal menu on small screens */
-@media (max-width: 820px) {
-  .left-side-filter {
-    display: none;
-  }
-
-  .hide-left-side {
-    display: none;
-  }
-
-  .centerpiece-component {
-    margin-top: 50px;
-  }
-}
-
-@media (max-width: 767px) {
-  .centerpiece-component {
-    margin-top: 65px;
-  }
-}
-
-/* Hide dropdown menu on medium screens and larger */
-@media (min-width: 821px) {
-  .dropdown-menu-mobile {
-    display: none;
-  }
-}
-
-@media (max-width: 820px) {
-  .recommended-right-side {
-    display: none;
-  }
-}
-
 .preview-post {
   /* background-color: white; */
   background-color: lightgray;
@@ -510,4 +476,98 @@ code {
 
 .like-button-already-liked {
   color: rgb(227, 169, 178);
+}
+
+#profile-nav-link {
+  margin-right: 20px;
+}
+
+/* Hide normal menu on small screens */
+@media (max-width: 820px) {
+  .left-side-filter {
+    display: none;
+  }
+
+  .hide-left-side {
+    display: none;
+  }
+
+  .centerpiece-component {
+    margin-top: 50px;
+  }
+
+  .my-groups-inner-container {
+    margin-top: 65px;
+  }
+
+  .my-group-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .create-group-outer {
+    margin-top: 60px;
+    width: 90%;
+  }
+
+  .create-group-input {
+    width: 90%;
+  }
+
+  .close-button {
+    width: 90%;
+    text-align: center;
+    margin-bottom: 90%;
+    margin-left: 60%;
+  }
+
+  .x-icon {
+    margin-right: 3px;
+  }
+
+  .group-edit-inner-container {
+    margin-left: 9px;
+  }
+
+  .description-input-changer {
+    width: 90%;
+    margin-left: 20px;
+  }
+
+  .img-button {
+    width: 90%;
+  }
+
+  .create-group-button {
+    margin: 0;
+  }
+
+  #profile-nav-link {
+    margin-right: 0;
+  }
+
+  #basic-navbar-nav {
+    background-color: darkgray;
+  }
+}
+
+@media (max-width: 767px) {
+  .centerpiece-component {
+    margin-top: 65px;
+  }
+}
+
+/* Hide dropdown menu on medium screens and larger */
+@media (min-width: 821px) {
+  .dropdown-menu-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 820px) {
+  .recommended-right-side {
+    display: none;
+  }
 }

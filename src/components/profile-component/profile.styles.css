@@ -211,3 +211,17 @@
   margin
 }
  */
+
+@media (max-width: 820px) {
+  .content-box {
+    margin-top: 70px;
+  }
+
+  .edit-button {
+    width: 100%;
+  }
+
+  .my-posts-card {
+    margin-top: 2%;
+  }
+}

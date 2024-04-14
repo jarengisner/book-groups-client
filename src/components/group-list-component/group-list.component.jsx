@@ -9,7 +9,7 @@ import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 //CSS import
 import '../../index.css';
 
-export const GroupList = ({ user, groups, tags }) => {
+export const GroupList = ({ user, groups, tags, refreshGroupsAfterDelete }) => {
   const [myGroups, setMyGroups] = useState([]);
   const [selectedGroup, setSelectedGroup] = useState(null);
   const [showEditingMenu, setShowEditingMenu] = useState(false);
@@ -25,7 +25,6 @@ export const GroupList = ({ user, groups, tags }) => {
         !currentUserGroups.includes(group)
     );
     setMyGroups(currentUserGroups);
-    /* setMemberOfGroups(currentMemberOf); */
   }, [groups]);
 
   //sets state for group to be edited
@@ -36,6 +35,19 @@ export const GroupList = ({ user, groups, tags }) => {
 
   const closeHandler = () => {
     setShowEditingMenu(false);
+  };
+
+  const deleteHandler = (name) => {
+    fetch(`http://localhost:8080/clubs/${name}`, {
+      method: 'DELETE',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => console.log(err));
+
+    refreshGroupsAfterDelete(name);
   };
 
   return (
@@ -66,6 +78,7 @@ export const GroupList = ({ user, groups, tags }) => {
                         <FontAwesomeIcon
                           icon={faTrash}
                           className='delete-group-icon'
+                          onClick={() => deleteHandler(g.name)}
                         />
                       </Button>
                     </div>

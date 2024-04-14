@@ -41,8 +41,8 @@ export const Navigation = () => {
             <Nav.Link
               as={Link}
               to='/profile'
+              id='profile-nav-link'
               className='text-standard'
-              style={{ marginRight: '20px' }}
             >
               <FontAwesomeIcon icon={faUser} />
             </Nav.Link>
