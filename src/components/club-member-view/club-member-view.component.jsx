@@ -16,6 +16,7 @@ export const MemberView = ({ user }) => {
   */
   const [posts, setPosts] = useState([]);
   const [club, setClub] = useState(null);
+  const [currentlyLiked, setCurrentlyLiked] = useState([]);
 
   const { groupname } = useParams();
 
@@ -34,6 +35,34 @@ export const MemberView = ({ user }) => {
       });
   }, [posts, groupname]);
 
+  /*  const unlikeHandler = (id, groupname, postIndex) => {
+    //Need to make a handler that will handle un-liking the post
+    let filteredLikes = currentLikes.filter((i) => i !== id);
+    setCurrentLikes(filteredLikes);
+  };  */
+
+  const likeHandler = (id, groupname, postIndex, postId) => {
+    const likeData = {
+      userId: id,
+      groupname: groupname,
+      postIndex: postIndex,
+    };
+
+    setCurrentlyLiked((prevLikes) => [...prevLikes, postId]);
+
+    fetch('http://localhost:8080/posts/like', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(likeData),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+
+    console.log('currentLikes ' + currentlyLiked);
+  };
+
   return (
     <Container>
       <Row>
@@ -48,7 +77,13 @@ export const MemberView = ({ user }) => {
           </>
           <div>
             {/* the actual posts section will be here, this will be a very in depth area */}
-            <Posts user={user} posts={posts} groupname={groupname} />
+            <Posts
+              user={user}
+              posts={posts}
+              groupname={groupname}
+              currentlyLiked={currentlyLiked}
+              likeHandler={likeHandler}
+            />
           </div>
         </Col>
         <Col sm={12} md={3}>

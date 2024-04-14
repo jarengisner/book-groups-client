@@ -7,11 +7,19 @@ import moment from 'moment';
 import { ClipLoader } from 'react-spinners';
 
 import { UserVisit } from './user-profile-visitor.component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 //style
 import '../../index.css';
 
-export const Posts = ({ user, posts, groupname }) => {
+export const Posts = ({
+  user,
+  posts,
+  groupname,
+  currentlyLiked,
+  likeHandler,
+}) => {
   const [currentPosts, setCurrentPosts] = useState([]);
   const [show, setShow] = useState(false);
   const [key, setKey] = useState('All');
@@ -84,7 +92,7 @@ export const Posts = ({ user, posts, groupname }) => {
         <Tab eventKey='All' title='All Posts'>
           <div>
             {currentPosts.length > 0 ? (
-              posts.map((post) => (
+              posts.map((post, index) => (
                 <Row style={{ marginTop: 15, marginBottom: 15 }}>
                   <Card className='group-post-card'>
                     {post.postImg ? <img src={post.postImg} alt='Po' /> : null}
@@ -97,6 +105,32 @@ export const Posts = ({ user, posts, groupname }) => {
                       </button>
                       <p>{post.postBody}</p>
                       <p>{moment(post.date).format('MM/DD/YYYY')}</p>
+                    </div>
+                    <div>
+                      {currentlyLiked.includes(post.id) ||
+                      post.likedBy.includes(user.username) ? (
+                        <button className='like-button'>
+                          <FontAwesomeIcon
+                            icon={faHeart}
+                            className='heart-button like-button-already-liked'
+                          />
+                        </button>
+                      ) : (
+                        <button className='like-button'>
+                          <FontAwesomeIcon
+                            icon={faHeart}
+                            className='heart-button'
+                            onClick={() =>
+                              likeHandler(
+                                user.username,
+                                groupname,
+                                index,
+                                post.id
+                              )
+                            }
+                          />
+                        </button>
+                      )}
                     </div>
                   </Card>
                 </Row>
