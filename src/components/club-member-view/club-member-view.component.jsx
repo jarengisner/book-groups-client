@@ -63,6 +63,30 @@ export const MemberView = ({ user }) => {
     console.log('currentLikes ' + currentlyLiked);
   };
 
+  const unlikeHandler = (id, groupname, postIndex, postId) => {
+    const unlikeData = {
+      userId: id,
+      groupname: groupname,
+      postIndex: postIndex,
+    };
+
+    let filteredCurrentLikes = currentlyLiked.filter((like) => like !== postId);
+
+    setCurrentlyLiked(filteredCurrentLikes);
+
+    fetch('http://localhost:8080/posts/unlike', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(unlikeData),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+
+    console.log('currentLikes ' + currentlyLiked);
+  };
+
   return (
     <Container>
       <Row>
@@ -83,6 +107,7 @@ export const MemberView = ({ user }) => {
               groupname={groupname}
               currentlyLiked={currentlyLiked}
               likeHandler={likeHandler}
+              unlikeHandler={unlikeHandler}
             />
           </div>
         </Col>

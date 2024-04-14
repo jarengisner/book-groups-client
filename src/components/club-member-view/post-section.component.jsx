@@ -19,6 +19,7 @@ export const Posts = ({
   groupname,
   currentlyLiked,
   likeHandler,
+  unlikeHandler,
 }) => {
   const [currentPosts, setCurrentPosts] = useState([]);
   const [show, setShow] = useState(false);
@@ -113,6 +114,14 @@ export const Posts = ({
                           <FontAwesomeIcon
                             icon={faHeart}
                             className='heart-button like-button-already-liked'
+                            onClick={() =>
+                              unlikeHandler(
+                                user.username,
+                                groupname,
+                                index,
+                                post.id
+                              )
+                            }
                           />
                         </button>
                       ) : (
