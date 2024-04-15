@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Card, Col, Container, Form, Row, Button } from 'react-bootstrap';
 import '../../index.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Login = ({ onLogin }) => {
   const [username, setUsername] = useState('');
@@ -30,8 +30,6 @@ export const Login = ({ onLogin }) => {
     })
       .then((res) => res.json())
       .then((info) => {
-        console.log('Login response: ' + info);
-
         if (info.user) {
           localStorage.setItem('user', JSON.stringify(info.user));
           localStorage.setItem('token', info.token);
@@ -87,6 +85,9 @@ export const Login = ({ onLogin }) => {
                 Log-In
               </Button>
             </Form>
+            <Link to='/register'>
+              <p className='register-link'>New? Register here</p>
+            </Link>
           </Card>
         </Col>
       </Row>

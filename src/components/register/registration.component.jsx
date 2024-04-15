@@ -1,22 +1,41 @@
 import { useState } from 'react';
 import { Card, Col, Container, Form, Row, Button } from 'react-bootstrap';
+import '../../index.css';
+import { Link } from 'react-router-dom';
 
-export const Registration = () => {
+export const Registration = (onLogin) => {
   const [newUsername, setNewUser] = useState('');
   const [newPassword, setNewPass] = useState('');
+  const [newBio, setNewBio] = useState('');
   const [email, setEmail] = useState('');
 
-  /* Insert code here for handling signup once api is ready */
-  /*
-  Styling and make sure that we submit to the api when we submit the form
-  */
+  const handleSubmit = () => {
+    const newUserData = {
+      username: newUsername,
+      password: newPassword,
+      bio: newBio,
+    };
+
+    fetch('http://localhost:8080/users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newUserData),
+    })
+      .then((res) => {
+        res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        window.location.reload();
+      });
+  };
 
   return (
     <Container>
-      <Row>
-        <Col>
-          <Card>
-            <h1>Log In</h1>
+      <Row className='justify-content-center'>
+        <Col md={3}>
+          <Card className='login-card'>
+            <h1>Register</h1>
             <Form>
               <Form.Group controlId='forUsername'>
                 <Form.Label>Username:</Form.Label>
@@ -33,7 +52,7 @@ export const Registration = () => {
               <Form.Group controlId='forPass'>
                 <Form.Label>Password:</Form.Label>
                 <Form.Control
-                  type='text'
+                  type='password'
                   value={newPassword}
                   required
                   onChange={(e) => {
@@ -42,21 +61,28 @@ export const Registration = () => {
                   placeholder='Password'
                 />
               </Form.Group>
-              <Form.Group controlId='forPass'>
-                <Form.Label>Email:</Form.Label>
+              <Form.Group controlId='forBio'>
+                <Form.Label>Password:</Form.Label>
                 <Form.Control
-                  type='text'
-                  value={email}
+                  as='textarea'
+                  value={newBio}
                   required
                   onChange={(e) => {
-                    setEmail(e.target.value);
+                    setNewBio(e.target.value);
                   }}
-                  placeholder='Email'
+                  placeholder='Enter Bio'
                 />
               </Form.Group>
-              <Button variant='primary' type='submit' className='mt-3'>
-                Sign-Up
-              </Button>
+              <Link to='/login'>
+                <Button
+                  variant='primary'
+                  type='submit'
+                  className='mt-3'
+                  onClick={handleSubmit}
+                >
+                  Log-In
+                </Button>
+              </Link>
             </Form>
           </Card>
         </Col>

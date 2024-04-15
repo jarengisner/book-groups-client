@@ -482,6 +482,18 @@ code {
   margin-right: 20px;
 }
 
+.success-message {
+  color: white;
+  font-size: x-large;
+  margin-top: 1%;
+  background-color: #198754;
+}
+
+.register-link {
+  color: white;
+  margin-top: 2%;
+}
+
 /* Hide normal menu on small screens */
 @media (max-width: 820px) {
   .left-side-filter {

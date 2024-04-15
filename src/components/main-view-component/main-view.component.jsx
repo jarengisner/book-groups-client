@@ -30,6 +30,8 @@ export const MainView = () => {
   const [initialGroups, setInitialGroups] = useState([]);
   //Holds all of our tags for filtering the groups 'genre'
   const [tag, setTag] = useState([]);
+  //holds first 5 tags
+  const [top5Tag, setTop5Tag] = useState([]);
   //Holds recommended groups
   const [recommended, setRecommended] = useState([]);
   //Holds current search state
@@ -122,7 +124,7 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-      <Navigation />
+      {user && token ? <Navigation /> : null}
       <Row className='justify-content-md-center' style={{ marginTop: '5%' }}>
         <Routes>
           <Route
@@ -144,8 +146,18 @@ export const MainView = () => {
                         >
                           All
                         </button>
-                        {tag.length > 0 ? (
+                        {tag.length > 0 && tag.length <= 5 ? (
                           tag.map((t) => (
+                            <button
+                              key={t}
+                              onClick={() => queryHandler(t)}
+                              className='filterButton'
+                            >
+                              {t}
+                            </button>
+                          ))
+                        ) : tag.length > 5 ? (
+                          tag.slice(0, 6).map((t) => (
                             <button
                               key={t}
                               onClick={() => queryHandler(t)}
@@ -311,10 +323,21 @@ export const MainView = () => {
             }
           />
           <Route path='/login' element={<Login onLogin={onLogin} />} />
-          <Route path='/register' element={<Registration />} />
+          <Route
+            path='/register'
+            element={<Registration onLogin={onLogin} />}
+          />
           <Route
             path='/creategroup'
-            element={<CreateGroup user={user} tags={tag} />}
+            element={
+              <>
+                {user && token ? (
+                  <CreateGroup user={user} tags={tag} />
+                ) : (
+                  <Navigate to='/login' />
+                )}
+              </>
+            }
           />
           <Route
             path='/mygroups'

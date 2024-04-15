@@ -11,6 +11,7 @@ export const CreateGroup = ({ user, tags }) => {
   const [groupTags, setGroupTags] = useState([]);
   const [query, setQuery] = useState('');
   const [message, setMessage] = useState('');
+  const [success, setSuccess] = useState(false);
 
   //sets state for each property of a group
   const nameChangeHandle = (event) => {
@@ -66,6 +67,7 @@ export const CreateGroup = ({ user, tags }) => {
       })
       .then((data) => {
         if (data) setMessage('Successfully created group');
+        setSuccess(true);
       })
       .catch((err) => {
         console.error(err);
@@ -186,6 +188,9 @@ export const CreateGroup = ({ user, tags }) => {
           >
             Create Group
           </Button>
+          {success ? (
+            <p className='success-message'>Group successfully created</p>
+          ) : null}
         </div>
       </div>
     </Container>
