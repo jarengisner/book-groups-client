@@ -67,7 +67,11 @@ export const Profile = ({ user, onLogout, groupSuggestions, syncUser }) => {
               {/* <div className='profile-pic-div'></div> */}
               <div className='name-bio-div'>
                 <img
-                  src={currentUserPic}
+                  src={
+                    currentUserPic
+                      ? currentUserPic
+                      : 'https://placehold.co/100x100?text=Hi!'
+                  }
                   alt='prof'
                   className='profile-img'
                 ></img>
