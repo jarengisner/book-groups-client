@@ -86,7 +86,9 @@ export const GroupList = ({ user, groups, tags, refreshGroupsAfterDelete }) => {
                 </Col>
               ))
             ) : (
-              <h1>Loading....</h1>
+              <h2 className='group-list-no-groups'>
+                It appears you don't have any groups to view
+              </h2>
             )}
           </Row>
         </div>
@@ -122,7 +124,9 @@ export const GroupList = ({ user, groups, tags, refreshGroupsAfterDelete }) => {
                   </Card>
                 ))
               ) : (
-                <h1>Loading....</h1>
+                <h2 className='group-list-no-groups'>
+                  It appears you don't have any groups to view
+                </h2>
               )}
             </Col>
             <Col md={6}>
