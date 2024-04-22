@@ -14,12 +14,13 @@ export const ClubPreview = ({ user }) => {
 
   console.log(groupname);
 
+  //Loads all other data from the group's name
   useEffect(() => {
     fetch(`http://localhost:8080/clubs/${groupname}`)
       .then((res) => res.json())
       .then((data) => {
         setClub(data);
-        console.log(data);
+        console.log('Success');
       })
       .catch((err) => {
         console.log(err);
@@ -28,10 +29,6 @@ export const ClubPreview = ({ user }) => {
         );
       });
   }, []);
-
-  useEffect(() => {
-    console.log(club);
-  }, [club]);
 
   return (
     <>

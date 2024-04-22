@@ -8,11 +8,6 @@ export const Login = ({ onLogin }) => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  /* Insert code here for handling login once api is ready */
-  /*
-  Need to just style this correctly so it looks good, and also then make sure that we actually submit our login request when we log into the application
-  */
-
   const handleSubmit = (e) => {
     e.preventDefault();
 

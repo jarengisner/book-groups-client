@@ -8,11 +8,9 @@ import { Registration } from '../register/registration.component';
 import { GroupList } from '../group-list-component/group-list.component';
 import { ClubPreview } from '../club-preview-component/club-preview.component';
 import { MemberView } from '../club-member-view/club-member-view.component';
-import { ClipLoader } from 'react-spinners';
 import { Navigation } from '../navigation/navigation.component';
 import { Recommendation } from './recommended.component';
 import { CreateGroup } from '../create-group/create-group.component';
-import { EditGroups } from '../group-list-component/group-editing.component';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -30,10 +28,6 @@ export const MainView = () => {
   const [initialGroups, setInitialGroups] = useState([]);
   //Holds all of our tags for filtering the groups 'genre'
   const [tag, setTag] = useState([]);
-  //holds first 5 tags
-  const [top5Tag, setTop5Tag] = useState([]);
-  //Holds recommended groups
-  const [recommended, setRecommended] = useState([]);
   //Holds current search state
   const [query, setQuery] = useState('All');
   //Holds results filtered by search
@@ -69,7 +63,6 @@ export const MainView = () => {
         setTag(uniqueTags);
         setInitialGroups(clubData);
         setFilteredResults(clubData);
-        console.log('main:', clubData);
       });
   }, []);
 
@@ -106,15 +99,28 @@ export const MainView = () => {
       body: JSON.stringify(likeData),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
-
-    console.log('currentLikes ' + currentLikes);
+      .then((data) => console.log('Successfully liked'));
   };
 
-  const unlikeHandler = (id, groupname, postIndex) => {
-    //Need to make a handler that will handle un-liking the post
-    let filteredLikes = currentLikes.filter((i) => i !== id);
+  const unlikeHandler = (id, groupname, postIndex, postId) => {
+    let filteredLikes = currentLikes.filter((i) => i !== postId);
     setCurrentLikes(filteredLikes);
+
+    const unlikeData = {
+      userId: id,
+      groupname: groupname,
+      postIndex: postIndex,
+    };
+
+    fetch('http://localhost:8080/posts/unlike', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(unlikeData),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log('Successfully Unliked'));
   };
 
   const refreshGroupsAfterDelete = (name) => {
@@ -201,11 +207,10 @@ export const MainView = () => {
                           about
                         </p>
                         {filteredResults.map((item) => (
-                          <div>
+                          <div key={item.name}>
                             <Link
                               to={`/groups/${item.name}`}
                               className='removeDecoration'
-                              key={item.name}
                             >
                               <Card
                                 style={{
@@ -287,7 +292,6 @@ export const MainView = () => {
                                 <p>No posts to preview</p>
                               )}
                             </div>
-                            {/* link was here */}
                           </div>
                         ))}
                       </div>

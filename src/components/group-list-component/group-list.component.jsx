@@ -43,7 +43,7 @@ export const GroupList = ({ user, groups, tags, refreshGroupsAfterDelete }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log('Successfully deleted');
       })
       .catch((err) => console.log(err));
 
@@ -58,7 +58,7 @@ export const GroupList = ({ user, groups, tags, refreshGroupsAfterDelete }) => {
             <h2 style={{ color: 'white' }}>Your Groups</h2>
             {myGroups.length > 0 ? (
               myGroups.map((g) => (
-                <Col md={6}>
+                <Col md={6} key={g.name}>
                   <Card style={{ margin: 20 }} className='my-group-card'>
                     <div className='my-group-title-caption'>
                       <Card.Title>{g.name}</Card.Title>
@@ -99,7 +99,11 @@ export const GroupList = ({ user, groups, tags, refreshGroupsAfterDelete }) => {
               <h2 style={{ color: 'white' }}>Your Groups</h2>
               {myGroups.length > 0 ? (
                 myGroups.map((g) => (
-                  <Card style={{ margin: 20 }} className='my-group-card'>
+                  <Card
+                    style={{ margin: 20 }}
+                    className='my-group-card'
+                    key={g.name}
+                  >
                     <div className='my-group-title-caption'>
                       <Card.Title>{g.name}</Card.Title>
                       <Card.Subtitle>{g.description}</Card.Subtitle>

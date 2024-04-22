@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Group App",
+  "name": "An app where people can come together in groups",
   "icons": [
     {
       "src": "favicon.ico",

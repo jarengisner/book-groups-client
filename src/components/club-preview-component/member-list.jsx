@@ -21,7 +21,6 @@ export const MemberList = ({ club }) => {
               className='member-card'
               style={{ marginRight: '1%' }}
             >
-              {/* <img src={person.profilePic} alt='profile'></img> */}
               <div>
                 <Card.Title>{person.username}</Card.Title>
               </div>

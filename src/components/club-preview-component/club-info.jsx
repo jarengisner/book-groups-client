@@ -9,18 +9,14 @@ export const ClubPreviewInfo = ({ club, user }) => {
 
   const navigate = useNavigate();
 
-  /*
-  
-  Here we are actually going to make sure that we navigate to our 'members' page instead of just reloading the same 'preview' page
-  
-  */
+  //joinHandle will take a club's name and a user's userId and update the groups members with the user
   const joinHandle = () => {
     fetch(`http://localhost:8080/clubs/join/${name}/${userId}`, {
       method: 'PUT',
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log('Success');
         navigate(`/groups/${name}`);
       })
       .catch((err) => {
@@ -29,13 +25,14 @@ export const ClubPreviewInfo = ({ club, user }) => {
       });
   };
 
+  //leaveHandle will pull the user out of the group's members array
   const leaveHandle = () => {
     fetch(`http://localhost:8080/clubs/${name}/${userId}/leave`, {
       method: 'PUT',
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log('Success');
       })
       .catch((err) => {
         console.log(err);

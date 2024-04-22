@@ -75,10 +75,6 @@ export const CreateGroup = ({ user, tags }) => {
       });
   };
 
-  const submitTest = (name, bio, groupTags, user) => {
-    console.log(name, bio, groupTags, user);
-  };
-
   return (
     <Container className='create-group-container-layer'>
       <div className='create-group-outer'>

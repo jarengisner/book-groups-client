@@ -47,7 +47,7 @@ export const GroupPhotoUpload = ({
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
   return (
-    <div {...getRootProps()} /* style={dropzoneStyles} */ className='dropZoneG'>
+    <div {...getRootProps()} className='dropZoneG'>
       <input {...getInputProps()} />
       {isDragActive ? (
         <p>Drop the photo here ...</p>

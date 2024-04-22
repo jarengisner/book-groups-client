@@ -32,7 +32,6 @@ export const ProfilePhotoUpload = ({ user, handlePhotoRefresh }) => {
       console.log('Photo uploaded successfully');
       const newUrl = data.profilePic;
       setUploading(false);
-      console.log(newUrl);
       handlePhotoRefresh(newUrl);
     } catch (error) {
       console.error('Error uploading photo:', error);

@@ -11,18 +11,15 @@ import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { EditProfile } from './profile-editing.component';
 
 export const Profile = ({ user, onLogout, groupSuggestions, syncUser }) => {
-  //make algorithm to sort out groups that the user is involved in
-
   const [groups, setGroups] = useState([]);
   const [showEdit, setShowEdit] = useState(false);
   const [currentBio, setCurrentBio] = useState(user.bio);
   const [currentUserPic, setCurrentUserPic] = useState(user.profilePic);
   const [userPosts, setUserPosts] = useState([]);
 
-  //useEffect is good, but it will filter for groups that you are a member of, make sure that it will provide all the details, etc.
+  //useEffect get all groups user is involved in and also their posts
   useEffect(() => {
     const groups = groupSuggestions;
-    console.log(groups);
     const filteredGroups = groups.filter((group) => {
       return group.members.some((member) => member.username === user.username);
     });
@@ -35,7 +32,6 @@ export const Profile = ({ user, onLogout, groupSuggestions, syncUser }) => {
         posts: group.posts.filter((post) => post.postUser === user.username),
       };
     });
-    console.log(userPostResults);
     setUserPosts(userPostResults.filter((obj) => obj.posts.length > 0));
   }, [groupSuggestions, user.username]);
 
@@ -47,12 +43,12 @@ export const Profile = ({ user, onLogout, groupSuggestions, syncUser }) => {
     }
   };
 
+  //refresh handlers simply refresh the bio and picture to create the illusion of immediate update
   const refreshUserBioAfterChanges = (bio) => {
     setCurrentBio(bio);
   };
 
   const refreshUserPicAfterChanges = (source) => {
-    console.log(source);
     setCurrentUserPic(source);
   };
 

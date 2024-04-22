@@ -36,7 +36,7 @@ export const CreatePost = ({ show, closeHandle, user, groupname }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log('Successful Post');
       });
 
     closeHandle();

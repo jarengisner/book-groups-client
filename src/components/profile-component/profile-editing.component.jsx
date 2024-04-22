@@ -38,10 +38,7 @@ export const EditProfile = ({
       });
   };
 
-  //refreshUserAfterChanges(newBio, newPic);
-
   const handlePhotoRefresh = (picUrl) => {
-    console.log(picUrl);
     setNewPic(picUrl);
   };
 

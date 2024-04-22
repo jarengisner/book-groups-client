@@ -9,6 +9,7 @@ export const Registration = (onLogin) => {
   const [newBio, setNewBio] = useState('');
   const [email, setEmail] = useState('');
 
+  //handler will just sign the user up
   const handleSubmit = () => {
     const newUserData = {
       username: newUsername,
@@ -25,7 +26,7 @@ export const Registration = (onLogin) => {
         res.json();
       })
       .then((data) => {
-        console.log(data);
+        console.log('Successfully signed up');
         window.location.reload();
       });
   };

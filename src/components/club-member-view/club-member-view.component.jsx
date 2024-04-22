@@ -26,8 +26,6 @@ export const MemberView = ({ user }) => {
       .then((data) => {
         setClub(data);
         setPosts(data.posts);
-        /* console.log(data);
-        console.log(data.posts); */
       })
       .catch((err) => {
         console.log(err);
@@ -58,7 +56,7 @@ export const MemberView = ({ user }) => {
       body: JSON.stringify(likeData),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => console.log('Successfully liked'));
 
     console.log('currentLikes ' + currentlyLiked);
   };
@@ -82,7 +80,7 @@ export const MemberView = ({ user }) => {
       body: JSON.stringify(unlikeData),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => console.log('Successfully unliked'));
 
     console.log('currentLikes ' + currentlyLiked);
   };
@@ -91,7 +89,6 @@ export const MemberView = ({ user }) => {
     <Container>
       <Row>
         <Col sm={12} md={9}>
-          {/* This is gonna be the club preview, nothing else needs to be added here */}
           <>
             {club ? (
               <ClubPreviewInfo club={club} user={user} />
@@ -100,7 +97,6 @@ export const MemberView = ({ user }) => {
             )}
           </>
           <div>
-            {/* the actual posts section will be here, this will be a very in depth area */}
             <Posts
               user={user}
               posts={posts}
@@ -112,7 +108,6 @@ export const MemberView = ({ user }) => {
           </div>
         </Col>
         <Col sm={12} md={3}>
-          {/* member list here just like in the preview */}
           <>{club ? <MemberList club={club} /> : <p>Loading...</p>}</>
         </Col>
       </Row>

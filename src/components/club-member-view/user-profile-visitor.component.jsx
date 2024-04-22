@@ -4,9 +4,6 @@ import { ClipLoader } from 'react-spinners';
 import '../../index.css';
 
 export const UserVisit = ({ show, userCloseHandle, user }) => {
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
   return (
     <Modal show={show} onHide={userCloseHandle} centered>
       <Modal.Header closeButton></Modal.Header>
@@ -22,7 +19,6 @@ export const UserVisit = ({ show, userCloseHandle, user }) => {
                   marginBottom: 5,
                 }}
               >
-                {/*Will need to remove this placeholder before we actually implement profile pics */}
                 <img
                   src={user.profilePic}
                   alt='profile'

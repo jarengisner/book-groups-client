@@ -94,7 +94,7 @@ export const Posts = ({
           <div>
             {currentPosts.length > 0 ? (
               posts.map((post, index) => (
-                <Row style={{ marginTop: 15, marginBottom: 15 }}>
+                <Row style={{ marginTop: 15, marginBottom: 15 }} key={post.id}>
                   <Card className='group-post-card'>
                     {post.postImg ? <img src={post.postImg} alt='Po' /> : null}
                     <div className='post-content'>
@@ -158,7 +158,10 @@ export const Posts = ({
             {currentPosts
               .filter((post) => post.postUser === user.username)
               .map((filteredPost) => (
-                <Row style={{ marginTop: 15, marginBottom: 15 }}>
+                <Row
+                  style={{ marginTop: 15, marginBottom: 15 }}
+                  key={filteredPost.id}
+                >
                   <Card>
                     {filteredPost.postImg ? (
                       <img src={filteredPost.postImg} alt='Po' />

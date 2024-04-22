@@ -81,9 +81,7 @@ export const EditGroups = ({ group, tags, closeHandler }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        //This is where we can pass the new updated user back to the user-list so that it renders instantly
-        //navigate to /groups/:groupname/member
-        console.log(data);
+        console.log('Success');
         //turns off loading screen
         setCurrentlySending(false);
         setSuccess(true);
