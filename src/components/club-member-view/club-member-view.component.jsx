@@ -21,7 +21,7 @@ export const MemberView = ({ user }) => {
   const { groupname } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:8080/clubs/${groupname}`)
+    fetch(`https://groups-api-6de9bfaff2b7.herokuapp.com/clubs/${groupname}`)
       .then((res) => res.json())
       .then((data) => {
         setClub(data);
@@ -48,7 +48,7 @@ export const MemberView = ({ user }) => {
 
     setCurrentlyLiked((prevLikes) => [...prevLikes, postId]);
 
-    fetch('http://localhost:8080/posts/like', {
+    fetch('https://groups-api-6de9bfaff2b7.herokuapp.com/posts/like', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ export const MemberView = ({ user }) => {
 
     setCurrentlyLiked(filteredCurrentLikes);
 
-    fetch('http://localhost:8080/posts/unlike', {
+    fetch('https://groups-api-6de9bfaff2b7.herokuapp.com/posts/unlike', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

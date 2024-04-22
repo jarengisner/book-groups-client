@@ -21,7 +21,7 @@ export const GroupPhotoUpload = ({
     try {
       setUploading(true);
       const response = await fetch(
-        `http://localhost:8080/groups/${groupname}/picture`,
+        `https://groups-api-6de9bfaff2b7.herokuapp.com/groups/${groupname}/picture`,
         {
           method: 'PUT',
           body: formData,

@@ -11,9 +11,12 @@ export const ClubPreviewInfo = ({ club, user }) => {
 
   //joinHandle will take a club's name and a user's userId and update the groups members with the user
   const joinHandle = () => {
-    fetch(`http://localhost:8080/clubs/join/${name}/${userId}`, {
-      method: 'PUT',
-    })
+    fetch(
+      `https://groups-api-6de9bfaff2b7.herokuapp.com/clubs/join/${name}/${userId}`,
+      {
+        method: 'PUT',
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log('Success');
@@ -27,9 +30,12 @@ export const ClubPreviewInfo = ({ club, user }) => {
 
   //leaveHandle will pull the user out of the group's members array
   const leaveHandle = () => {
-    fetch(`http://localhost:8080/clubs/${name}/${userId}/leave`, {
-      method: 'PUT',
-    })
+    fetch(
+      `https://groups-api-6de9bfaff2b7.herokuapp.com/clubs/${name}/${userId}/leave`,
+      {
+        method: 'PUT',
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log('Success');

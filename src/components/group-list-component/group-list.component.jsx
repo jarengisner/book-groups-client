@@ -38,7 +38,7 @@ export const GroupList = ({ user, groups, tags, refreshGroupsAfterDelete }) => {
   };
 
   const deleteHandler = (name) => {
-    fetch(`http://localhost:8080/clubs/${name}`, {
+    fetch(`https://groups-api-6de9bfaff2b7.herokuapp.com/clubs/${name}`, {
       method: 'DELETE',
     })
       .then((res) => res.json())

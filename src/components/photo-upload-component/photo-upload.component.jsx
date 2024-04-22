@@ -17,10 +17,13 @@ export const PhotoUpload = ({ user }) => {
     try {
       setUploading(true);
       // Make a POST request to the API endpoint for uploading the photo using fetch
-      const response = await fetch(`/users/${username}/picture`, {
-        method: 'PUT',
-        body: formData,
-      });
+      const response = await fetch(
+        ` https://groups-api-6de9bfaff2b7.herokuapp.com/users/${username}/picture`,
+        {
+          method: 'PUT',
+          body: formData,
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);

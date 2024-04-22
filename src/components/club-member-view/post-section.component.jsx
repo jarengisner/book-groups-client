@@ -48,7 +48,7 @@ export const Posts = ({
       profilePic: '',
     };
 
-    fetch(`http://localhost:8080/users/${visitTarget}`)
+    fetch(`https://groups-api-6de9bfaff2b7.herokuapp.com/users/${visitTarget}`)
       .then((res) => res.json())
       .then((data) => {
         userData.username = data.username;

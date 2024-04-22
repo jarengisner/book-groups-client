@@ -21,15 +21,18 @@ export const EditProfile = ({
   };
 
   const submitEditHandle = () => {
-    fetch(`http://localhost:8080/users/update/${user.username}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        newBio: newBio,
-      }),
-    })
+    fetch(
+      `https://groups-api-6de9bfaff2b7.herokuapp.com/users/update/${user.username}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          newBio: newBio,
+        }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         refreshUserBioAfterChanges(newBio);

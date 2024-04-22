@@ -41,7 +41,7 @@ export const MainView = () => {
   };
 
   useEffect(() => {
-    fetch('http://localhost:8080/clubs')
+    fetch('https://groups-api-6de9bfaff2b7.herokuapp.com/clubs')
       .then((res) => res.json())
       .then((data) => {
         const clubData = data.map((club) => {
@@ -91,7 +91,7 @@ export const MainView = () => {
 
     setCurrentLikes((previousLikes) => [...previousLikes, postId]);
 
-    fetch('http://localhost:8080/posts/like', {
+    fetch('https://groups-api-6de9bfaff2b7.herokuapp.com/like', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ export const MainView = () => {
       postIndex: postIndex,
     };
 
-    fetch('http://localhost:8080/posts/unlike', {
+    fetch('https://groups-api-6de9bfaff2b7.herokuapp.com/unlike', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

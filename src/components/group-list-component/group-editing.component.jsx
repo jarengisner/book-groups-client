@@ -68,17 +68,20 @@ export const EditGroups = ({ group, tags, closeHandler }) => {
   const submitChangesHandle = () => {
     //marks the start of the loading icon
     //setCurrentlySending(true);
-    fetch(`http://localhost:8080/clubs/${group.name}/details`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: editedName,
-        description: editedDescription,
-        tags: editedTags,
-      }),
-    })
+    fetch(
+      `https://groups-api-6de9bfaff2b7.herokuapp.com/clubs/${group.name}/details`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: editedName,
+          description: editedDescription,
+          tags: editedTags,
+        }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log('Success');

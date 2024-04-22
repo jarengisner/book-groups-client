@@ -17,7 +17,7 @@ export const Registration = (onLogin) => {
       bio: newBio,
     };
 
-    fetch('http://localhost:8080/users', {
+    fetch('https://groups-api-6de9bfaff2b7.herokuapp.com/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newUserData),

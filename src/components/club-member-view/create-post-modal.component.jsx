@@ -27,13 +27,16 @@ export const CreatePost = ({ show, closeHandle, user, groupname }) => {
       },
     };
 
-    fetch(`http://localhost:8080/clubs/${groupname}/posts`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(postData),
-    })
+    fetch(
+      `https://groups-api-6de9bfaff2b7.herokuapp.com/clubs/${groupname}/posts`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(postData),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log('Successful Post');

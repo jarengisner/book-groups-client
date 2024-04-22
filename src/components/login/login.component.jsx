@@ -16,7 +16,7 @@ export const Login = ({ onLogin }) => {
       password: password,
     };
 
-    fetch('http://localhost:8080/login', {
+    fetch('https://groups-api-6de9bfaff2b7.herokuapp.com/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

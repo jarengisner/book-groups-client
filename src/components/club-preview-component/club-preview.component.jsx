@@ -16,7 +16,7 @@ export const ClubPreview = ({ user }) => {
 
   //Loads all other data from the group's name
   useEffect(() => {
-    fetch(`http://localhost:8080/clubs/${groupname}`)
+    fetch(`https://groups-api-6de9bfaff2b7.herokuapp.com/clubs/${groupname}`)
       .then((res) => res.json())
       .then((data) => {
         setClub(data);

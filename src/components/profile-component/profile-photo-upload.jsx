@@ -17,7 +17,7 @@ export const ProfilePhotoUpload = ({ user, handlePhotoRefresh }) => {
     try {
       setUploading(true);
       const response = await fetch(
-        `http://localhost:8080/users/${username}/picture`,
+        `https://groups-api-6de9bfaff2b7.herokuapp.com/users/${username}/picture`,
         {
           method: 'PUT',
           body: formData,

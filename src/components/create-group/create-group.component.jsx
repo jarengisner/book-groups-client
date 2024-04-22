@@ -47,7 +47,7 @@ export const CreateGroup = ({ user, tags }) => {
       bio: user.bio,
     };
 
-    fetch('http://localhost:8080/clubs', {
+    fetch('https://groups-api-6de9bfaff2b7.herokuapp.com/clubs', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
