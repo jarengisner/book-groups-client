@@ -138,7 +138,7 @@ export const MainView = () => {
             element={
               <>
                 {!user || !token ? (
-                  <Navigate to='/login' />
+                  <Navigate to='/login' replace />
                 ) : initialGroups.length === 0 ? (
                   <h1>Loading.....</h1>
                 ) : (
