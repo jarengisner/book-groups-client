@@ -30,7 +30,6 @@ export const MainView = () => {
   //Holds all of our tags for filtering the groups 'genre'
   const [tag, setTag] = useState([]);
   //Holds current search state
-  const [query, setQuery] = useState('All');
   //Holds results filtered by search
   const [filteredResults, setFilteredResults] = useState([]);
   //controls a like to refresh page instantly upon liking
@@ -70,7 +69,6 @@ export const MainView = () => {
   //Handles all filter results
   const queryHandler = (arg) => {
     if (arg === 'All') {
-      setQuery('All');
       setFilteredResults(initialGroups);
     } else {
       let current = initialGroups.filter((group) => group.tags.includes(arg));

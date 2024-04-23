@@ -1,7 +1,5 @@
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
-import { Navigation } from '../navigation/navigation.component';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { EditGroups } from './group-editing.component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -19,13 +17,8 @@ export const GroupList = ({ user, groups, tags, refreshGroupsAfterDelete }) => {
       (group) => group.members[0].username === user.username
     );
 
-    const currentMemberOf = groups.filter(
-      (group) =>
-        group.members.includes(user.username) &&
-        !currentUserGroups.includes(group)
-    );
     setMyGroups(currentUserGroups);
-  }, [groups]);
+  }, [groups, user.username]);
 
   //sets state for group to be edited
   const groupEditSelection = (group) => {

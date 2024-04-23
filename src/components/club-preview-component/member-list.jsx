@@ -6,7 +6,7 @@ export const MemberList = ({ club }) => {
 
   useEffect(() => {
     setMembers(club.members);
-  }, []);
+  }, [club.members]);
 
   return (
     <div>

@@ -1,5 +1,4 @@
 import { Modal, Button, Card } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
 import { ClipLoader } from 'react-spinners';
 import '../../index.css';
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
 import '../profile-component/profile.styles.css';

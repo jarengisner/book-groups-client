@@ -74,7 +74,7 @@ export const Posts = ({
         setEmpty(true);
       }
     }, 2000);
-  }, []);
+  }, [currentPosts.length]);
 
   return (
     <Container className='postDiv'>

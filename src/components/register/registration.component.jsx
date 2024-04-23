@@ -7,7 +7,6 @@ export const Registration = (onLogin) => {
   const [newUsername, setNewUser] = useState('');
   const [newPassword, setNewPass] = useState('');
   const [newBio, setNewBio] = useState('');
-  const [email, setEmail] = useState('');
 
   //handler will just sign the user up
   const handleSubmit = () => {

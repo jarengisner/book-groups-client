@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react';
-import { Col, Container, Row, Button } from 'react-bootstrap';
+import { useState } from 'react';
+import { Col, Row, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX, faImage, faCheck } from '@fortawesome/free-solid-svg-icons';
 //CSS import
 import '../../index.css';
 
 import { GroupPhotoUpload } from './group-photo-upload';
-import { Navigate } from 'react-router-dom';
 
 export const EditGroups = ({ group, tags, closeHandler }) => {
   const [editedName, setEditedName] = useState(group.name);
@@ -14,7 +13,6 @@ export const EditGroups = ({ group, tags, closeHandler }) => {
   const [showGroupPhotoUpload, setShowGroupPhotoUpload] = useState(false);
   const [groupPhoto, setGroupPhoto] = useState(group.groupImg);
 
-  const [currentlySending, setCurrentlySending] = useState(false);
   const [success, setSuccess] = useState(null);
 
   const [editedTags, setEditedTags] = useState(group.tags);
@@ -86,7 +84,6 @@ export const EditGroups = ({ group, tags, closeHandler }) => {
       .then((data) => {
         console.log('Success');
         //turns off loading screen
-        setCurrentlySending(false);
         setSuccess(true);
       })
       .catch((err) => {

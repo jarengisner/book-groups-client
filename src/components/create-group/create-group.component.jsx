@@ -7,10 +7,8 @@ import '../../index.css';
 export const CreateGroup = ({ user, tags }) => {
   const [name, setName] = useState('');
   const [bio, setBio] = useState('');
-  const [initialPost, setInitialPost] = useState('');
   const [groupTags, setGroupTags] = useState([]);
   const [query, setQuery] = useState('');
-  const [message, setMessage] = useState('');
   const [success, setSuccess] = useState(false);
 
   //sets state for each property of a group
@@ -19,9 +17,6 @@ export const CreateGroup = ({ user, tags }) => {
   };
   const bioChangeHandler = (event) => {
     setBio(event.target.value);
-  };
-  const postChangeHadler = (event) => {
-    setInitialPost(event.target.value);
   };
 
   const tagsHandler = (tag) => {
@@ -66,12 +61,10 @@ export const CreateGroup = ({ user, tags }) => {
         return res.json();
       })
       .then((data) => {
-        if (data) setMessage('Successfully created group');
         setSuccess(true);
       })
       .catch((err) => {
         console.error(err);
-        setMessage('Failed to create group');
       });
   };
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
 import './group-photo-upload.css';
