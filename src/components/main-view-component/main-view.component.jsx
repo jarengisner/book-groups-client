@@ -19,8 +19,8 @@ import '../../index.css';
 
 export const MainView = () => {
   //State to check user and token for security
-  const storedUser = JSON.parse(localStorage.getItem('user')) || null;
-  const storedToken = localStorage.getItem('token') || null;
+  const storedUser = JSON.parse(localStorage.getItem('user'));
+  const storedToken = localStorage.getItem('token');
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
 
@@ -35,10 +35,10 @@ export const MainView = () => {
   //controls a like to refresh page instantly upon liking
   const [currentLikes, setCurrentLikes] = useState([]);
 
-  const onLogin = (user, token) => {
+  /* const onLogin = (user, token) => {
     setUser(user);
     setToken(token);
-  };
+  }; */
 
   useEffect(() => {
     fetch('https://groups-api-6de9bfaff2b7.herokuapp.com/clubs')
@@ -326,10 +326,27 @@ export const MainView = () => {
               </>
             }
           />
-          <Route path='/login' element={<Login onLogin={onLogin} />} />
+          <Route
+            path='/login'
+            element={
+              <Login
+                onLogin={(user, token) => {
+                  setUser(user);
+                  setToken(token);
+                }}
+              />
+            }
+          />
           <Route
             path='/register'
-            element={<Registration onLogin={onLogin} />}
+            element={
+              <Registration
+                onLogin={(user, token) => {
+                  setUser(user);
+                  setToken(token);
+                }}
+              />
+            }
           />
           <Route
             path='/creategroup'
