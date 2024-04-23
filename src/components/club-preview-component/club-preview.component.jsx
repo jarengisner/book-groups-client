@@ -28,7 +28,7 @@ export const ClubPreview = ({ user }) => {
           'There was an error when loading a specific club to the preview page'
         );
       });
-  }, []);
+  }, [groupname]);
 
   return (
     <>

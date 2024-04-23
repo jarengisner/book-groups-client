@@ -4,8 +4,6 @@ import moment from 'moment';
 
 export const CreatePost = ({ show, closeHandle, user, groupname }) => {
   const [postBody, setPostBody] = useState('');
-  const [postImgUrl, setPostImgUrl] = useState('');
-  const [currentUser, setUser] = useState(user);
 
   const userId = user.username;
 

@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { Container, Button, Row, Col, Card, Tabs, Tab } from 'react-bootstrap';
+import { Container, Button, Row, Card, Tabs, Tab } from 'react-bootstrap';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import { CreatePost } from './create-post-modal.component';
 import moment from 'moment';
 import { ClipLoader } from 'react-spinners';

@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import { Navigation } from '../navigation/navigation.component';
+import { Container, Row, Col } from 'react-bootstrap';
 import { ClubPreviewInfo } from '../club-preview-component/club-info';
 import { MemberList } from '../club-preview-component/member-list';
 import { useParams } from 'react-router-dom';

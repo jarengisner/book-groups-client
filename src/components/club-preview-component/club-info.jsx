@@ -1,6 +1,5 @@
 import { Button, Card } from 'react-bootstrap';
 import '../../index.css';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export const ClubPreviewInfo = ({ club, user }) => {
