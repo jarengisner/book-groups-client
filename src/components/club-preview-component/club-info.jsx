@@ -1,12 +1,9 @@
 import { Button, Card } from 'react-bootstrap';
 import '../../index.css';
-import { useNavigate } from 'react-router-dom';
 
 export const ClubPreviewInfo = ({ club, user }) => {
   const name = club.name;
   const userId = user.username;
-
-  const navigate = useNavigate();
 
   //joinHandle will take a club's name and a user's userId and update the groups members with the user
   const joinHandle = () => {
