@@ -21,9 +21,10 @@
     "react-spinners": "^0.13.8",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://jarengisner.github.io/groups-client",
   "scripts": {
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "start": "react-scripts start",
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
@@ -42,8 +43,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "parcel": "^2.12.0"
   }
 }
