@@ -20,9 +20,9 @@ import '../../index.css';
 export const MainView = () => {
   //State to check user and token for security
   //not working
-  const storedUser = JSON.parse(localStorage.getItem('user'));
+  const storedUser = localStorage.getItem('user');
   const storedToken = localStorage.getItem('token');
-  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [user, setUser] = useState(storedUser ? JSON.parse(storedUser) : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
 
   //initialGroups holds all of the groups fetched from the Db
