@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 export const Login = ({ onLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errMessage, setErrMessage] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -23,7 +24,13 @@ export const Login = ({ onLogin }) => {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          setErrMessage('Incorrect Username or Password');
+        }
+      })
       .then((info) => {
         if (info.user) {
           localStorage.setItem('user', JSON.stringify(info.user));
@@ -71,6 +78,11 @@ export const Login = ({ onLogin }) => {
                   placeholder='Password'
                 />
               </Form.Group>
+              {errMessage.length > 0 ? (
+                <div>
+                  <p style={{ color: 'red' }}>{errMessage}</p>
+                </div>
+              ) : null}
               <Button
                 variant='primary'
                 type='submit'

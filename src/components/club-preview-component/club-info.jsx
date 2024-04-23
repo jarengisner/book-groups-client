@@ -19,7 +19,8 @@ export const ClubPreviewInfo = ({ club, user }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log('Success');
-        navigate(`/groups/${name}`);
+        window.location.reload();
+        /* navigate(`/groups/${name}`); */
       })
       .catch((err) => {
         console.log(err);
