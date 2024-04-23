@@ -19,6 +19,7 @@ import '../../index.css';
 
 export const MainView = () => {
   //State to check user and token for security
+  //not working
   const storedUser = JSON.parse(localStorage.getItem('user'));
   const storedToken = localStorage.getItem('token');
   const [user, setUser] = useState(storedUser ? storedUser : null);
