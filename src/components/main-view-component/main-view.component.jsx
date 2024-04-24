@@ -32,8 +32,6 @@ export const MainView = () => {
   //Holds current search state
   //Holds results filtered by search
   const [filteredResults, setFilteredResults] = useState([]);
-  //controls a like to refresh page instantly upon liking
-  const [currentLikes, setCurrentLikes] = useState([]);
 
   /* const onLogin = (user, token) => {
     setUser(user);
@@ -79,47 +77,6 @@ export const MainView = () => {
   const syncUser = (user) => {
     setUser(user);
     localStorage.setItem('user', JSON.stringify(user));
-  };
-
-  const likeHandler = (id, groupname, postIndex, postId) => {
-    const likeData = {
-      userId: id,
-      groupname: groupname,
-      postIndex: postIndex,
-    };
-
-    setCurrentLikes((previousLikes) => [...previousLikes, postId]);
-
-    fetch('https://groups-api-6de9bfaff2b7.herokuapp.com/like', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(likeData),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log('Successfully liked'));
-  };
-
-  const unlikeHandler = (id, groupname, postIndex, postId) => {
-    let filteredLikes = currentLikes.filter((i) => i !== postId);
-    setCurrentLikes(filteredLikes);
-
-    const unlikeData = {
-      userId: id,
-      groupname: groupname,
-      postIndex: postIndex,
-    };
-
-    fetch('https://groups-api-6de9bfaff2b7.herokuapp.com/unlike', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(unlikeData),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log('Successfully Unliked'));
   };
 
   const refreshGroupsAfterDelete = (name) => {
@@ -248,42 +205,16 @@ export const MainView = () => {
                                     {item.posts[0].postBody}
                                   </p>
                                   <div>
-                                    {item.posts[0].likedBy.includes(
-                                      user.username
-                                    ) ||
-                                    currentLikes.includes(item.posts[0].id) ? (
-                                      <button className='like-button'>
+                                    {item.posts[0].likes ? (
+                                      <div className='current-likes-number-container'>
                                         <FontAwesomeIcon
                                           icon={faHeart}
                                           className='heart-button like-button-already-liked'
-                                          onClick={() =>
-                                            unlikeHandler(
-                                              user.username,
-                                              item.name,
-                                              0,
-                                              item.posts[0].id
-                                            )
-                                          }
                                         />
-                                      </button>
-                                    ) : (
-                                      <button className='like-button'>
-                                        <FontAwesomeIcon
-                                          icon={faHeart}
-                                          className='heart-button'
-                                          onClick={() =>
-                                            likeHandler(
-                                              user.username,
-                                              item.name,
-                                              0,
-                                              item.posts[0].id
-                                            )
-                                          }
-                                        />
-                                      </button>
-                                    )}
-                                    {item.posts[0].likes ? (
-                                      <p>{item.posts[0].likes}</p>
+                                        <p className='current-likes-on-post'>
+                                          {item.posts[0].likes}
+                                        </p>
+                                      </div>
                                     ) : null}
                                   </div>
                                 </>
